@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Andromedical3a</string>
+    <string name="pastillas">PASTILLAS</string>
+    <string name="cita_medico">CITA MEDICO</string>
+    <string name="calendario">CALENDARIO</string>
+    <string name="help_icon">Help_icon</string>
+    <string name="setting_icon">setting_icon</string>
+    <string name="image_medication">Image_medication</string>
+    <string name="textview_help">TextView_help</string>
+    <string name="message_help">Esto es un mensaje de ayuda</string>
+    <string name="login_administration">login</string>
+    <string name="has_olvidado_la_contrase_a">¿Has olvidado la contraseña?</string>
+    <string name="back_icon">back_icon</string>
+    <string name="add_medication">AÑADIR MEDICACIÓN</string>
+    <string name="fecha_inicio">Fecha Inicio:</string>
+    <string name="fecha_fin">Fecha fin:</string>
+    <string name="monodosis_restantes">Monodosis restantes:</string>
+    <string name="tomas">Tomas:</string>
+    <string name="medicamento">Medicamento:</string>
+    <string name="delete">delete</string>
+    <string name="edit">edit</string>
+</resources>
