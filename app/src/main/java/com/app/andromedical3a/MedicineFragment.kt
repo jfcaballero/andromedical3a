@@ -1,5 +1,3 @@
-package com.app.andromedical3a.administrationModulo
-
 import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Build
@@ -18,21 +16,20 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.app.andromedical3a.R
 import com.app.andromedical3a.addMedicationModulo.Medicacion
+import com.app.andromedical3a.administrationModulo.AdministrationMedicineViewModel
 import java.text.SimpleDateFormat
 
 
-private const val TAG = "AdministrationMedicine"
+private const val TAG = "MedicineFragment"
 
-class AdministrationMedicineFragment : Fragment() {
+class MedicineFragment : Fragment() {
 
     interface Callbacks {
-        fun addMedicacionDiariooNoModulo()
     }
 
 
     private lateinit var backbutton: ImageButton
     private lateinit var helpbutton: ImageButton
-    private lateinit var addmedication: ImageButton
     private lateinit var recyclerView: RecyclerView
     private var medicineListAdapter: MedicineListAdapter = MedicineListAdapter(emptyList())
 
@@ -48,10 +45,10 @@ class AdministrationMedicineFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //medicacion  = Medicacion(UUID.randomUUID(),"paracetamol",Date(),Date(),40f,2f, Calendar.getInstance(),
-            //BitmapFactory.decodeResource(context?.resources,R.drawable.pastillasmain))
+        //BitmapFactory.decodeResource(context?.resources,R.drawable.pastillasmain))
 
-         //medicacion1  = Medicacion(UUID.randomUUID(),"ibuprofenon",Date(),Date(),40f,2f, Calendar.getInstance(),
-            //BitmapFactory.decodeResource(context?.resources,R.drawable.pills))
+        //medicacion1  = Medicacion(UUID.randomUUID(),"ibuprofenon",Date(),Date(),40f,2f, Calendar.getInstance(),
+        //BitmapFactory.decodeResource(context?.resources,R.drawable.pills))
 
 
         //administrationMedicineViewModel.addMedicacion(medicacion)
@@ -67,9 +64,9 @@ class AdministrationMedicineFragment : Fragment() {
 
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_administration_medicine, container, false)
 
@@ -78,7 +75,6 @@ class AdministrationMedicineFragment : Fragment() {
         recyclerView.adapter = medicineListAdapter
         recyclerView.layoutManager = LinearLayoutManager(context)
 
-        addmedication = view.findViewById(R.id.addMedication) as ImageButton
         backbutton = view.findViewById(R.id.back_button_administration_medicine) as ImageButton
         helpbutton = view.findViewById(R.id.help_icon_administration_medicine) as ImageButton
 
@@ -90,12 +86,12 @@ class AdministrationMedicineFragment : Fragment() {
 
 
         administrationMedicineViewModel.listaMedicacionLiveData.observe(
-            viewLifecycleOwner, { medicacion ->
-                medicacion?.let {
-                    Log.d(TAG, "Numero de medicamentos : ${medicacion.size}")
-                    mostrarMedicacion(medicacion)
-                }
+                viewLifecycleOwner, { medicacion ->
+            medicacion?.let {
+                Log.d(TAG, "Numero de medicamentos : ${medicacion.size}")
+                mostrarMedicacion(medicacion)
             }
+        }
         )
 
 
@@ -115,17 +111,12 @@ class AdministrationMedicineFragment : Fragment() {
             activity?.onBackPressed()
         }
 
-        addmedication.setOnClickListener {
-            callbacks?.addMedicacionDiariooNoModulo()
-        }
 
     }
 
     override fun onDestroy() {
         super.onDestroy()
         Log.i(TAG, "Destruyendo fragmento $TAG")
-        administrationMedicineViewModel.deleteMedicacion(medicacion)
-        administrationMedicineViewModel.deleteMedicacion(medicacion1)
 
     }
 
@@ -135,7 +126,7 @@ class AdministrationMedicineFragment : Fragment() {
     }
 
     private inner class MedicineListAdapter(var medicacion: List<Medicacion>) :
-        RecyclerView.Adapter<MedicineListAdapter.MedicacionViewHolder>() {
+            RecyclerView.Adapter<MedicineListAdapter.MedicacionViewHolder>() {
 
         override fun getItemCount() = medicacion.size
 
@@ -153,22 +144,22 @@ class AdministrationMedicineFragment : Fragment() {
         }
 
         private inner class MedicacionViewHolder(view: View) :
-            RecyclerView.ViewHolder(view),
-            View.OnClickListener {
+                RecyclerView.ViewHolder(view),
+                View.OnClickListener {
 
             private var mposition: Int = 0
 
             private var medicamento: TextView = itemView.findViewById(R.id.medicamento) as TextView
             private var imageMedicine: ImageView =
-                itemView.findViewById(R.id.imageMedicine) as ImageView
+                    itemView.findViewById(R.id.imageMedicine) as ImageView
             private var detallefechainicio: TextView =
-                itemView.findViewById(R.id.detalleFechaInicio) as TextView
+                    itemView.findViewById(R.id.detalleFechaInicio) as TextView
             private var detallefechafin: TextView =
-                itemView.findViewById(R.id.detalleFechaFin) as TextView
+                    itemView.findViewById(R.id.detalleFechaFin) as TextView
             private var detallemonodosis: TextView =
-                itemView.findViewById(R.id.detalleMonodosis) as TextView
+                    itemView.findViewById(R.id.detalleMonodosis) as TextView
             private var detalletomas: TextView =
-                itemView.findViewById(R.id.detalleTomas) as TextView
+                    itemView.findViewById(R.id.detalleTomas) as TextView
 
             init {
                 itemView.setOnClickListener(this)

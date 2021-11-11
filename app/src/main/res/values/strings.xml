@@ -19,4 +19,12 @@
     <string name="medicamento">Medicamento:</string>
     <string name="delete">delete</string>
     <string name="edit">edit</string>
+    <string name="titleMenu">¿Toma la medicación diariamente?</string>
+    <string name="TextFirstButton">Si</string>
+    <string name="TextSecondButton">No</string>
+    <string name="TextThirdButton">Tal vez</string>
+    <string name="TextFourButton">Tal vez</string>
+    <string name="report_planned_date_start">Fecha de Inicio</string>
+    <string name="report_planned_date_end">Fecha Final</string>
+    <string name="nameMedication">Nombre Medicacion</string>
 </resources>

@@ -17,6 +17,7 @@ class MainPageFragment : Fragment() {
         fun loginadministrationModulo()
         fun calendarModulo()
         fun dateMedicModulo()
+        fun medicineModulo()
     }
 
     private var callbacks: Callbacks? = null
@@ -53,7 +54,11 @@ class MainPageFragment : Fragment() {
             callbacks?.loginadministrationModulo()
         }
 
-        helpButton.setOnClickListener {
+        medicineButton.setOnClickListener {
+            callbacks?.medicineModulo()
+        }
+
+            helpButton.setOnClickListener {
             val dlgAlert = AlertDialog.Builder(this.context)
             dlgAlert.setTitle("VENTANA DE AYUDA")
             dlgAlert.setMessage("Pulse el boton de CALENDARIO, si desea ver el calendario de sus medicaciones.\n\n " +

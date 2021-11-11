@@ -2,6 +2,7 @@ package com.app.andromedical3a.administrationMedicineModulo
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.app.andromedical3a.addMedicationModulo.Medicacion
 import java.util.*
 
 @Dao

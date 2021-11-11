@@ -21,19 +21,20 @@ class MedicacionTypeConverters {
     }
 
     @TypeConverter
-    fun fromTimestamp(value: Long?): Calendar? = value?.let { value ->
-        GregorianCalendar().also { calendar ->
-            calendar.timeInMillis = value
-        }
+    fun fromString(stringListString: String): List<String> {
+        return stringListString.split(",").map { it }
     }
 
     @TypeConverter
-    fun toTimestamp(timestamp: Calendar?): Long? = timestamp?.timeInMillis
+    fun toString(stringList: List<String>): String {
+        return stringList.joinToString(separator = ",")
+    }
 
     @TypeConverter
     fun toUUID(uuid: String?): UUID? {
         return UUID.fromString(uuid)
     }
+
 
     @TypeConverter
     fun fromUUID(uuid: UUID?): String? {

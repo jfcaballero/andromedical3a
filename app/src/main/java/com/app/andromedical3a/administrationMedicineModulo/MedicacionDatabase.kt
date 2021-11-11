@@ -1,8 +1,9 @@
-package com.app.andromedical3a.administrationMedicineModulo;
+package com.app.andromedical3a.administrationMedicineModulo
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import com.app.andromedical3a.addMedicationModulo.Medicacion
 
 
 @Database(entities = [Medicacion::class], version = 1, exportSchema = false)
