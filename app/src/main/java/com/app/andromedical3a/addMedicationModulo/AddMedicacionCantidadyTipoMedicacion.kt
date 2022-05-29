@@ -20,7 +20,7 @@ class AddMedicacionCantidadyTipoMedicacion: Fragment() {
 
     // Interfaz para comunicarme con MainActivity y decirle que monte el siguiente fragmento
     interface Callbacks {
-        fun addMedicacionTipoCantidadTotalyFoto()
+        fun addFechaInicioyFechaFinal()
     }
 
     private var callbacks: Callbacks? = null
@@ -79,9 +79,9 @@ class AddMedicacionCantidadyTipoMedicacion: Fragment() {
             }
 
             if (addTipoMedicamento.length()>0 && addCantidad.length()>0) {
-                sharedMedication.setCantidadToma(addCantidad.text.toString().toDouble())
+                sharedMedication.setCantidadToma(addCantidad.text.toString().toFloat())
                 sharedMedication.setComentarioTomas(addTipoMedicamento.text.toString())
-                callbacks?.addMedicacionTipoCantidadTotalyFoto();
+                callbacks?.addFechaInicioyFechaFinal();
             }
 
         }

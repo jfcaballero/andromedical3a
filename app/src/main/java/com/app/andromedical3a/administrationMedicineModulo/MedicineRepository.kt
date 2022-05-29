@@ -1,6 +1,7 @@
 package com.app.andromedical3a.administrationMedicineModulo
 
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.room.Room
 import com.app.andromedical3a.addMedicationModulo.Medicacion
@@ -8,6 +9,7 @@ import java.util.*
 import java.util.concurrent.Executors
 
 private const val NOMBRE_BASE_DE_DATOS = "Medicacion-database"
+private const val TAG = "Medicacion-database"
 
 class MedicineRepository private constructor(context: Context) {
 
@@ -22,7 +24,7 @@ class MedicineRepository private constructor(context: Context) {
 
     fun getMedicaciones(): LiveData<List<Medicacion>> = medicacionDao.getAll()
 
-    fun getMedicacion(id: UUID): LiveData<Medicacion> = medicacionDao.getById(id)
+    fun getMedicacion(id: Int?): LiveData<Medicacion> = medicacionDao.getById(id)
 
     fun updateMedicacion(medicacion : Medicacion) {
         executor.execute {
@@ -34,6 +36,15 @@ class MedicineRepository private constructor(context: Context) {
         executor.execute {
             medicacionDao.insertMedicacion(medicacion)
         }
+    }
+
+    fun setMedicacionByNameAndAddMedicacion(name : String,sumar : Float) {
+        executor.execute {
+            val medicacion = medicacionDao.findByName(name)
+            medicacion.numero_dosis = medicacion.numero_dosis + sumar
+            medicacionDao.updateMedicacion(medicacion)
+        }
+
     }
 
     fun deleteMedicacion(medicacion: Medicacion) {

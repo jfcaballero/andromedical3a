@@ -1,10 +1,16 @@
 package com.app.andromedical3a
 
-import MedicineFragment
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat.getSystemService
+import androidx.lifecycle.ViewModelProvider
 import com.app.andromedical3a.addMedicationModulo.*
+import com.app.andromedical3a.administrationAlarmMedicine.MyBroadcastReceiver
 import com.app.andromedical3a.administrationModulo.AdministrationFragment
 import com.app.andromedical3a.administrationModulo.AdministrationMedicineFragment
 import com.app.andromedical3a.administrationModulo.LoginAdministrationFragment
@@ -13,7 +19,8 @@ private const val TAG = "MainActivity"
 
 class MainActivity : AppCompatActivity(), MainPageFragment.Callbacks, LoginAdministrationFragment.Callbacks, AdministrationFragment.Callbacks,
     AdministrationMedicineFragment.Callbacks, AddMedicacionDiariooNoModulo.Callbacks, AddMedicacionNumeroTomas.Callbacks, AddMedicacionNumeroTomasMensuales.Callbacks, AddMedicacionSeleccionarDiasTomasMensuales.Callbacks,
-    AddMedicacionCantidadyTipoMedicacion.Callbacks, AddMedicacionCantidadTotalyFoto.Callbacks, AddFechaInicioyFechaFinal.Callbacks, AddMedicacionNombre.Callbacks, MedicineFragment.Callbacks {
+    AddMedicacionCantidadyTipoMedicacion.Callbacks, AddFechaInicioyFechaFinal.Callbacks, AddMedicacionNombre.Callbacks, MedicineFragment.Callbacks, DetailMedicineFragment.Callbacks, DetailMedicineFragmentAdmin.Callbacks {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -47,11 +54,10 @@ class MainActivity : AppCompatActivity(), MainPageFragment.Callbacks, LoginAdmin
             LoginAdministrationFragment()
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.fragment_container, fragmentologinAdministracion)
-            .addToBackStack(null)
-            .commit()
+            .replace(R.id.fragment_container,fragmentologinAdministracion)
+                .addToBackStack(null)
+                .commit()
     }
-
     override fun calendarModulo() {
         Log.i(TAG, "Montando modulo calendar")
         /* val fragmentocalendar =
@@ -131,6 +137,28 @@ class MainActivity : AppCompatActivity(), MainPageFragment.Callbacks, LoginAdmin
                 .commit()
     }
 
+    override fun detailMedicacionSeleccionadaAdmin(medicacion: Medicacion) {
+        Log.i(TAG, "Medicacion : ${medicacion.name}")
+        val fragmentodetailMedicacionSeleccionada =
+            DetailMedicineFragmentAdmin.newInstance(medicacion)
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragment_container, fragmentodetailMedicacionSeleccionada)
+            .addToBackStack(null)
+            .commit()
+    }
+
+    override fun detailMedicacionSeleccionada(medicacion: Medicacion) {
+        Log.i(TAG, "Medicacion : ${medicacion.name}")
+        val fragmentodetailMedicacionSeleccionada =
+            DetailMedicineFragment.newInstance(medicacion)
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragment_container, fragmentodetailMedicacionSeleccionada)
+            .addToBackStack(null)
+            .commit()
+    }
+
     override fun addMedicacionTipoCantidadyTipoMedicacion() {
         Log.i(TAG, "Montando modulo addMedicacionCantidadyTipoMedicacion")
         val fragmentoAddMedicacionCantidadyTipoTomas =
@@ -140,17 +168,6 @@ class MainActivity : AppCompatActivity(), MainPageFragment.Callbacks, LoginAdmin
             .replace(R.id.fragment_container, fragmentoAddMedicacionCantidadyTipoTomas)
             .addToBackStack(null)
             .commit()
-    }
-
-    override fun addMedicacionTipoCantidadTotalyFoto() {
-        Log.i(TAG, "Montando modulo addMedicacionTipoCantidadTotalyFoto")
-        val fragmentoAddMedicacionTipoCantidadTotalyFoto =
-                AddMedicacionCantidadTotalyFoto()
-        supportFragmentManager
-                .beginTransaction()
-                .replace(R.id.fragment_container, fragmentoAddMedicacionTipoCantidadTotalyFoto)
-                .addToBackStack(null)
-                .commit()
     }
 
     override fun addFechaInicioyFechaFinal() {
@@ -184,6 +201,23 @@ class MainActivity : AppCompatActivity(), MainPageFragment.Callbacks, LoginAdmin
             .replace(R.id.fragment_container, fragmentoAddMedicacionSeleccionarDiasTomasMensuales)
             .addToBackStack(null)
             .commit()
+    }
+
+    override fun deleteAllAlarms(medicacion: Medicacion) {
+        val deleteAllAlarmsFragmentViewModel: DetailMedicineViewModel by lazy {
+            ViewModelProvider(this).get(DetailMedicineViewModel::class.java)
+        }
+        val ids = deleteAllAlarmsFragmentViewModel.getArrayIdsAlarms(medicacion)
+
+        ids.forEach {
+            val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager?
+            val myIntent = Intent(this, MyBroadcastReceiver::class.java)
+            val pendingIntent = PendingIntent.getBroadcast(
+                    this, it.toInt(), myIntent,
+                    PendingIntent.FLAG_UPDATE_CURRENT
+            )
+            alarmManager!!.cancel(pendingIntent)
+        }
     }
 
 

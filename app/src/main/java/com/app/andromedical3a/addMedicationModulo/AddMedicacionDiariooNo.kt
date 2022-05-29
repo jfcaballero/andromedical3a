@@ -10,6 +10,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.RadioButton
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.app.andromedical3a.R
 
@@ -24,9 +26,7 @@ class AddMedicacionDiariooNoModulo : Fragment() {
 
     private var callbacks: Callbacks? = null
 
-    private val medicacionDiariaoNoViewModel : AddMedicacionViewModel by lazy {
-        ViewModelProvider(this).get(AddMedicacionViewModel::class.java)
-    }
+    private val medicacionDiariaoNoViewModel : AddMedicacionViewModel by activityViewModels()
 
     private lateinit var siButton: RadioButton
     private lateinit var noButton: RadioButton
@@ -37,8 +37,8 @@ class AddMedicacionDiariooNoModulo : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        var rootView : View = inflater.inflate(R.layout.fragment_medicacion_diaria_o_no,container,false)
+    ): View {
+        val rootView : View = inflater.inflate(R.layout.fragment_medicacion_diaria_o_no,container,false)
 
         siButton = rootView.findViewById(R.id.FirstButton) as RadioButton
         noButton = rootView.findViewById(R.id.SecondButton) as RadioButton
@@ -60,8 +60,8 @@ class AddMedicacionDiariooNoModulo : Fragment() {
 
             when {
                 noButton.isChecked -> {
-                    callbacks?.addMedicacionNumeroTomasMensuales()
                     medicacionDiariaoNoViewModel.setMedicacionDiaria(false)
+                    callbacks?.addMedicacionNumeroTomasMensuales()
                 }
                 siButton.isChecked -> {
                     medicacionDiariaoNoViewModel.setMedicacionDiaria(true);

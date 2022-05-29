@@ -30,6 +30,7 @@ class MedicacionTypeConverters {
         return stringList.joinToString(separator = ",")
     }
 
+
     @TypeConverter
     fun toUUID(uuid: String?): UUID? {
         return UUID.fromString(uuid)

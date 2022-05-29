@@ -11,7 +11,7 @@ interface MedicacionDao {
     fun getAll(): LiveData<List<Medicacion>>
 
     @Query("SELECT * FROM medicacion WHERE id = (:id)")
-    fun getById(id: UUID): LiveData<Medicacion>
+    fun getById(id: Int?): LiveData<Medicacion>
 
     @Query("SELECT * FROM medicacion WHERE name LIKE :name")
     fun findByName(name: String): Medicacion

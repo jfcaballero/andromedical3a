@@ -65,7 +65,7 @@ class AddFechaInicioyFechaFinal : Fragment() {
         fechaInicio.setOnClickListener {
             val now = Calendar.getInstance()
             val datePicker = DatePickerDialog(
-                this.context, { _, year, month, day_of_month ->
+                this.requireContext(), { _, year, month, day_of_month ->
                     val selectedDate = Calendar.getInstance()
                     selectedDate.set(Calendar.YEAR, year)
                     selectedDate.set(Calendar.MONTH, month)
@@ -83,7 +83,7 @@ class AddFechaInicioyFechaFinal : Fragment() {
         fechaFinal.setOnClickListener{
             val now = Calendar.getInstance()
             val datePicker = DatePickerDialog(
-                this.context, { _, year, month, day_of_month ->
+                    this.requireContext(), { _, year, month, day_of_month ->
                     val selectedDate = Calendar.getInstance()
                     selectedDate.set(Calendar.YEAR, year)
                     selectedDate.set(Calendar.MONTH, month)
@@ -91,7 +91,7 @@ class AddFechaInicioyFechaFinal : Fragment() {
                     val date = day_of_month.toString() + " / " + (month+1) + " / " + year
                     fechaFinal.setText(date)
                     sharedMedication.setFechaFinal(selectedDate.time)
-                    Log.i(TAG,"Inicio" + selectedDate.time)
+                    Log.i(TAG,"Final" + selectedDate.time)
                 },
                 now.get(Calendar.YEAR), now.get(Calendar.MONTH), now.get(Calendar.DAY_OF_MONTH) )
             datePicker.setTitle("Seleccione la fecha de final del tratamiento")

@@ -27,6 +27,7 @@ class AdministrationMedicineFragment : Fragment() {
 
     interface Callbacks {
         fun addMedicacionDiariooNoModulo()
+        fun detailMedicacionSeleccionadaAdmin(medicacion: Medicacion)
     }
 
 
@@ -36,8 +37,6 @@ class AdministrationMedicineFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private var medicineListAdapter: MedicineListAdapter = MedicineListAdapter(emptyList())
 
-    private lateinit var medicacion : Medicacion
-    private lateinit var medicacion1 : Medicacion
 
     private var callbacks: Callbacks? = null
 
@@ -98,7 +97,6 @@ class AdministrationMedicineFragment : Fragment() {
             }
         )
 
-
     }
 
     private fun mostrarMedicacion(medicacion: List<Medicacion>) {
@@ -118,14 +116,6 @@ class AdministrationMedicineFragment : Fragment() {
         addmedication.setOnClickListener {
             callbacks?.addMedicacionDiariooNoModulo()
         }
-
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.i(TAG, "Destruyendo fragmento $TAG")
-        administrationMedicineViewModel.deleteMedicacion(medicacion)
-        administrationMedicineViewModel.deleteMedicacion(medicacion1)
 
     }
 
@@ -150,11 +140,14 @@ class AdministrationMedicineFragment : Fragment() {
         override fun onBindViewHolder(holder: MedicacionViewHolder, position: Int) {
             val medicacion: Medicacion = medicacion[position]
             holder.setData(medicacion, position)
+            holder.bind(medicacion)
         }
 
         private inner class MedicacionViewHolder(view: View) :
             RecyclerView.ViewHolder(view),
             View.OnClickListener {
+
+            private lateinit var medicacionMostrar : Medicacion
 
             private var mposition: Int = 0
 
@@ -174,33 +167,44 @@ class AdministrationMedicineFragment : Fragment() {
                 itemView.setOnClickListener(this)
             }
 
-            @SuppressLint("SimpleDateFormat")
+            fun bind (medicacion: Medicacion) {
+                this.medicacionMostrar = medicacion
+            }
+
+            @SuppressLint("SimpleDateFormat", "SetTextI18n")
             @RequiresApi(Build.VERSION_CODES.O)
             fun setData(medicacion: Medicacion, position: Int) {
                 mposition = position
                 //Add data of bbdd to display
                 medicamento.text = medicacion.name
                 imageMedicine.setImageBitmap(medicacion.foto_medicacion)
-                var spf = SimpleDateFormat("dd/MMM/yyyy")
-                detallefechainicio.text = spf.format(medicacion.fecha_inicio)
-                detallefechafin.text = spf.format(medicacion.fecha_fin)
-                detallemonodosis.text = medicacion.numero_dosis.toString()
+                val spf = SimpleDateFormat("dd/MMM/yyyy")
+                detallefechainicio.text = "Inicio: " + spf.format(medicacion.fecha_inicio)
+                detallefechafin.text = "Fin: "+ spf.format(medicacion.fecha_fin)
+                detallemonodosis.text = "Dosis tomadas: " + medicacion.numero_dosis.toString()
                 if (medicacion.medicacion_diaria) {
-                    spf = SimpleDateFormat("d")
-                    when (medicacion.tomas_diarias[0]) {
-                        "1" -> detalletomas.text = "1 dia a la semana:" + spf.format(medicacion.tomas_diarias[0])
-                        "2" -> detalletomas.text = "2 dias a la semana:" + spf.format(medicacion.tomas_diarias[0])
-                        "3" -> detalletomas.text = "3 dias a la semana:" + spf.format(medicacion.tomas_diarias[0])
-                        "5" -> detalletomas.text = "5 dias a la semana:" + spf.format(medicacion.tomas_diarias[0])
-                        "15" -> detalletomas.text = "cada 15 dias:" + spf.format(medicacion.tomas_diarias[0])
-                        "30" -> detalletomas.text = "1 vez al mes:" + spf.format(medicacion.tomas_diarias[0])
+                    if (medicacion.tomas_diarias.size == 1) {
+                        detalletomas.text = "Dosís diarias: X "
                     }
-                    detalletomas.text = medicacion.tomas_diarias.toString()
-                }
+                    if (medicacion.tomas_diarias.size == 2) {
+                        detalletomas.text = "Dosís diarias: X - X "
+                    }
+                    if (medicacion.tomas_diarias.size == 3) {
+                        detalletomas.text = "Dosís diarias: X - X - X "
+                    }
+                    if (medicacion.tomas_diarias.size == 4) {
+                        detalletomas.text = "Dosís diarias: X - X - X - X "
+                    }
+                    if (medicacion.tomas_diarias.size == 5) {
+                        detalletomas.text = "Dosís diarias: X - X - X - X - X "
+                    }
+
+                    }
             }
 
             override fun onClick(view: View?) {
-                TODO("Not yet implemented")
+                val medicacionToShow: Medicacion = medicacionMostrar.copy()
+                callbacks?.detailMedicacionSeleccionadaAdmin(medicacionToShow)
             }
 
 
