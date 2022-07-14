@@ -1,4 +1,4 @@
-package com.app.andromedical3a.administrationAlarmMedicine
+package com.app.andromedical3a.administrationAlarmCitaMedica
 
 import android.annotation.SuppressLint
 import android.app.NotificationChannel
@@ -22,15 +22,15 @@ import com.app.andromedical3a.R
 import java.util.*
 
 
-private const val TAG = "MyBroadcastReceiver"
+private const val TAG = "MyBroadcastReceiverCitaMedica"
 
-private const val CHANNEL_ID = "NotificationMedicacion"
+private const val CHANNEL_ID = "NotificationCitaMedico"
 private const val notificationId = 1000
 
 
-class MyBroadcastReceiver  : BroadcastReceiver() {
+class MyBroadcastReceiverCitaMedica  : BroadcastReceiver() {
 
-    @SuppressLint("UnsafeProtectedBroadcastReceiver", "ServiceCast")
+    @SuppressLint("UnsafeProtectedBroadcastReceiver", "ServiceCast", "LongLogTag")
     override fun onReceive(context: Context?, intent: Intent?) {
         /*
         val vibrator = context!!.getSystemService(VIBRATOR_SERVICE) as Vibrator
@@ -47,7 +47,7 @@ class MyBroadcastReceiver  : BroadcastReceiver() {
 
             val vibrator = context!!.getSystemService(VIBRATOR_SERVICE) as Vibrator
             vibrator.vibrate(2000000)
-            var alarmUri: Uri? = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
+            var alarmUri: Uri? = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE)
             if (alarmUri == null) {
                 alarmUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
             }
@@ -57,26 +57,25 @@ class MyBroadcastReceiver  : BroadcastReceiver() {
             ringtone.play()
 
             intent!!.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            Log.i(TAG, "Estamos en BroadCastReceiver")
+            Log.i(TAG, "Estamos en BroadCastReceiverCitaMedica")
 
-            val fullScreenIntent = Intent(context, ShowAlarmaMedicacion::class.java).apply {
+            val fullScreenIntent = Intent(context, ShowAlarmaCitaMedica::class.java).apply {
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                this.putExtra("fotoMedicacion", intent.getParcelableExtra("fotoMedicacion") as Bitmap)
-                this.putExtra("tomaDiaria", intent.getFloatExtra("tomaDiaria",0.0f))
-                this.putExtra("nombreMedicacion", intent.getStringExtra("nombreMedicacion"))
-                this.putExtra("comentarioToma", intent.getStringExtra("comentarioToma"))
+                this.putExtra("nombreMedico", intent.getStringExtra("nombreMedico"))
+                this.putExtra("fechacita", intent.getParcelableExtra("fechacita") as Date)
+                this.putExtra("comentarioCitaMedico", intent.getStringExtra("nombreMedico"))
+                this.putExtra("horaAlarma", intent.getParcelableExtra("horaAlarma") as Date)
                 this.putExtra("requestCode", intent.getIntExtra("requestCode",0))
 
             }
 
-                Log.i(TAG, intent.getStringExtra("nombreMedicacion").toString())
                 val fullScreenPendingIntent = PendingIntent.getActivity(context, intent.getIntExtra("requestCode",0),
                 fullScreenIntent, PendingIntent.FLAG_UPDATE_CURRENT)
 
             val builder = NotificationCompat.Builder(context, CHANNEL_ID)
                 .setSmallIcon(R.drawable.pills)
-                .setContentTitle("Hora de la medicación")
-                .setContentText("Hora de tomarte " + intent.getStringExtra("nombreMedicacion"))
+                .setContentTitle("Alarma de cita medica")
+                .setContentText("Tiene una cita programada hoy.")
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 // Set the intent that will fire when the user taps the notification
                 .setAutoCancel(true)
@@ -91,7 +90,7 @@ class MyBroadcastReceiver  : BroadcastReceiver() {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 val importance = NotificationManager.IMPORTANCE_DEFAULT
                 val channel = NotificationChannel(CHANNEL_ID, "name", importance).apply {
-                    description = "Hora de la medicación"
+                    description = "Hora de la cita medica"
                 }
                 // Register the channel with the system
                 val notificationManager = context.getSystemService(NOTIFICATION_SERVICE) as NotificationManager

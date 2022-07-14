@@ -89,13 +89,13 @@ class AdministrationMedicineFragment : Fragment() {
 
 
         administrationMedicineViewModel.listaMedicacionLiveData.observe(
-            viewLifecycleOwner, { medicacion ->
-                medicacion?.let {
-                    Log.d(TAG, "Numero de medicamentos : ${medicacion.size}")
-                    mostrarMedicacion(medicacion)
-                }
+            viewLifecycleOwner
+        ) { medicacion ->
+            medicacion?.let {
+                Log.d(TAG, "Numero de medicamentos : ${medicacion.size}")
+                mostrarMedicacion(medicacion)
             }
-        )
+        }
 
     }
 

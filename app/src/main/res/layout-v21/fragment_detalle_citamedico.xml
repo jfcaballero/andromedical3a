@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <ImageButton
+        android:id="@+id/back_button_detail_citamedico"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="648dp"
+        android:adjustViewBounds="false"
+        android:background="#FFFFFF"
+        android:clickable="true"
+        android:contentDescription="@string/back_icon"
+        android:focusable="true"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/back_icon"
+        app:layout_constraintStart_toEndOf="@id/comentario"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/nombreMedicacion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:textSize="40sp"
+        android:text="Cita Medica"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/nombreMedicoDetalle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre medico:"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="25dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nombreMedicacion" />
+
+    <TextView
+        android:id="@+id/fechaCitaMedico"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fecha Cita Medica:"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="25dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nombreMedicoDetalle" />
+
+    <TextView
+        android:id="@+id/horaAlarma"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hora Alarma"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="25dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fechaCitaMedico" />
+
+    <TextView
+        android:id="@+id/comentario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Comentario"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="25dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/horaAlarma" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

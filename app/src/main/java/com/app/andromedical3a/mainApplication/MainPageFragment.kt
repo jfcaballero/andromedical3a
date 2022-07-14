@@ -1,4 +1,4 @@
-package com.app.andromedical3a
+package com.app.andromedical3a.mainApplication
 
 import android.app.AlertDialog
 import android.content.Context
@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
 import androidx.fragment.app.Fragment
+import com.app.andromedical3a.R
 
 class MainPageFragment : Fragment() {
 
@@ -49,6 +50,14 @@ class MainPageFragment : Fragment() {
     // Aqui pongo los listeners a los botones
     override fun onStart() {
         super.onStart()
+
+        citeDoctorButton.setOnClickListener{
+            callbacks?.dateMedicModulo()
+        }
+
+        calendarButton.setOnClickListener {
+            callbacks?.calendarModulo()
+        }
 
         configurationButton.setOnClickListener {
             callbacks?.loginadministrationModulo()

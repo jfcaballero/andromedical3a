@@ -21,7 +21,7 @@ class ShowAlarmaMedicacionViewModel : ViewModel() {
     var bmp = Bitmap.createBitmap(w, h, conf)
 
     var medicacion =
-        Medicacion(
+        Medicacion(UUID.randomUUID(),
             "",
             Date(),
             Date(),

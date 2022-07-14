@@ -1,7 +1,6 @@
 package com.app.andromedical3a.administrationMedicineModulo
 
 import android.content.Context
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.room.Room
 import com.app.andromedical3a.addMedicationModulo.Medicacion
@@ -53,7 +52,7 @@ class MedicineRepository private constructor(context: Context) {
         }
     }
 
-    fun deleteMedicacionPorID(idCitaMedicacion: UUID) {
+    fun deleteMedicacionPorID(idCitaMedicacion: UUID?) {
         executor.execute {
             medicacionDao.deleteMedicacionById(idCitaMedicacion)
         }

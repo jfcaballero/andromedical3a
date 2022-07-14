@@ -27,4 +27,9 @@
     <string name="report_planned_date_start">Fecha de Inicio</string>
     <string name="report_planned_date_end">Fecha Final</string>
     <string name="nameMedication">Nombre Medicacion</string>
+    <string name="nombre_medico">Nombre Medico</string>
+    <string name="fecha_cita">Fecha cita:</string>
+    <string name="fecha_alarma">Fecha alarma:</string>
+    <string name="informacion_cita">Informacion cita:</string>
+    <string name="comentarios_cita">Comentarios cita</string>
 </resources>

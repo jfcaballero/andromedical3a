@@ -29,5 +29,5 @@ interface MedicacionDao {
     fun deleteMedicacion(nameMedicacion: String)
 
     @Query("DELETE FROM medicacion WHERE id=(:id)")
-    fun deleteMedicacionById(id: UUID)
+    fun deleteMedicacionById(id: UUID?)
 }

@@ -1,4 +1,4 @@
-package com.app.andromedical3a
+package com.app.andromedical3a.medicacionModulo
 
 import android.graphics.Bitmap
 import androidx.lifecycle.ViewModel
@@ -19,7 +19,7 @@ class DetailMedicineViewModel : ViewModel() {
     private val MedicacionRepositorio =
         MedicineRepository.get()
     var medicacion =
-        Medicacion(
+        Medicacion(UUID.randomUUID(),
             "",
             Date(),
             Date(),
@@ -33,12 +33,8 @@ class DetailMedicineViewModel : ViewModel() {
         this.medicacion = medicacion
     }
 
-    fun deleteMedicacion(medicacion: Medicacion)
+    fun deleteMedicacionById(idMedicacion: UUID?)
     {
-        MedicacionRepositorio.deleteMedicacion(medicacion)
-    }
-
-    fun getArrayIdsAlarms(medicacion: Medicacion): List<String> {
-        return medicacion.id_alarmas
+        MedicacionRepositorio.deleteMedicacionPorID(idMedicacion)
     }
 }

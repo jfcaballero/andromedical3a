@@ -10,7 +10,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 @Entity
-data class Medicacion(
+data class Medicacion(@PrimaryKey val id: UUID = UUID.randomUUID(),
         val name: String,
         var fecha_inicio: Date,
         var fecha_fin: Date,
@@ -24,9 +24,7 @@ data class Medicacion(
         var medicacion_diaria : Boolean,
         var tomas_mensuales : Int,
         var id_alarmas :  List<String>
-): Serializable {
-    @PrimaryKey(autoGenerate = true) var id: Int? = null
-}
+): Serializable
 
 
 

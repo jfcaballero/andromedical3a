@@ -1,4 +1,4 @@
-package com.app.andromedical3a
+package com.app.andromedical3a.administrationModulo
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
@@ -16,18 +16,24 @@ import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.app.andromedical3a.R
+import com.app.andromedical3a.medicacionModulo.DetailMedicineViewModel
 import com.app.andromedical3a.addMedicationModulo.Medicacion
 import java.io.Serializable
 import java.text.SimpleDateFormat
 import java.util.*
 
-
-private const val TAG = "DetailMedicineFragment"
+private const val TAG = "DetailMedicineFragmentAdmin"
 private const val ARG_MEDICACION = "medicacion"
 
-class DetailMedicineFragment : Fragment() {
+class DetailMedicineFragmentAdmin : Fragment() {
 
-    interface Callbacks
+
+    interface Callbacks {
+        fun deleteAllAlarms(medicacion : Medicacion)
+        fun administrationModulo()
+    }
+
 
     private lateinit var backbutton: ImageButton
     private lateinit var helpbutton: ImageButton
@@ -37,6 +43,7 @@ class DetailMedicineFragment : Fragment() {
     private lateinit var FechaFin: TextView
     private lateinit var cantidadToma: TextView
     private lateinit var horasTomas: TextView
+    private lateinit var deleteMedicacion: Button
     var fecha : List<String> = emptyList()
 
     var medicacionPasada : Medicacion? = null
@@ -47,7 +54,13 @@ class DetailMedicineFragment : Fragment() {
         ViewModelProvider(this).get(DetailMedicineViewModel::class.java)
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        callbacks = context as Callbacks?
+    }
 
+
+    @SuppressLint("LongLogTag")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -56,6 +69,7 @@ class DetailMedicineFragment : Fragment() {
                 ARG_MEDICACION
         ) as Medicacion
         detailMedicineCitaViewModel.cargarMedicacion(medicacionPasada!!)
+        setHasOptionsMenu(true)
 
 
     }
@@ -65,24 +79,24 @@ class DetailMedicineFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_detalle_medicine, container, false)
+        val view = inflater.inflate(R.layout.fragment_detalle_medicine_admin, container, false)
 
 
+        deleteMedicacion = view.findViewById(R.id.deleteMedicacion) as Button
         fotoMedicacion = view.findViewById(R.id.imageMedicacion) as ImageView
         tituloMedicacion = view.findViewById(R.id.nombreMedicacion) as TextView
         FechaInicio = view.findViewById(R.id.fechaInicio) as TextView
         FechaFin = view.findViewById(R.id.fechaFinal) as TextView
         cantidadToma = view.findViewById(R.id.tomasTotales) as TextView
         horasTomas = view.findViewById(R.id.horaTomas) as TextView
-        backbutton = view.findViewById(R.id.back_button_detail_medicine) as ImageButton
+        backbutton = view.findViewById(R.id.back_button_detail_medicine_admin) as ImageButton
 
         return view
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    @SuppressLint("SetTextI18n")
-    override fun onStart() {
-        super.onStart()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         var horasAmostrar : String? = ""
         var diasAmostrar : String? = ""
         var horaNoDiaria : String? = ""
@@ -97,6 +111,20 @@ class DetailMedicineFragment : Fragment() {
         FechaFin.text = spf.format(detailMedicineCitaViewModel.medicacion.fecha_fin).toString()
         cantidadToma.text = detailMedicineCitaViewModel.medicacion.numero_dosis.toString()
 
+        deleteMedicacion.setOnClickListener {
+            //callbacks?.addMedicacionDiariooNoModulo()
+            val dlgAlert = AlertDialog.Builder(this.context)
+            dlgAlert.setTitle("MENSAJE DE AVISO")
+            dlgAlert.setMessage("Va a eliminar una medicacion.\n\n ")
+            dlgAlert.setPositiveButton("SI") { _, _ ->
+                detailMedicineCitaViewModel.deleteMedicacionById(medicacionPasada?.id)
+                callbacks?.deleteAllAlarms(medicacionPasada!!)
+                callbacks?.administrationModulo()
+            }
+            dlgAlert.setNegativeButton("NO", null);
+            dlgAlert.create().show();
+            activity?.onBackPressed()
+        }
 
         if (detailMedicineCitaViewModel.medicacion.medicacion_diaria)
         {
@@ -147,17 +175,13 @@ class DetailMedicineFragment : Fragment() {
             }
         }
 
+
     }
 
-
-    override fun onDetach() {
-        super.onDetach()
-        callbacks = null
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        callbacks = context as Callbacks?
+    @RequiresApi(Build.VERSION_CODES.O)
+    @SuppressLint("SetTextI18n")
+    override fun onStart() {
+        super.onStart()
     }
 
     @SuppressLint("LongLogTag")
@@ -170,15 +194,16 @@ class DetailMedicineFragment : Fragment() {
         /* Crea instancias de AjustesCitaFragment, recogiendo el valor que se le haya
         pasado como argumento, es decir, la cita de peluqueria pulsada
          */
-        fun newInstance(medicacion: Medicacion): DetailMedicineFragment {
+        fun newInstance(medicacion: Medicacion): DetailMedicineFragmentAdmin {
             val args = Bundle().apply {
                 putSerializable(ARG_MEDICACION, medicacion as Serializable)
             }
-            return DetailMedicineFragment()
+            return DetailMedicineFragmentAdmin()
                     .apply {
                         arguments = args
                     }
         }
     }
+
 
 }

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/titleMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Selecciona la fecha y hora de la cita del medico"
+        android:textColor="@color/black"
+        android:textSize="26sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        />
+
+    <RadioGroup
+        android:id="@+id/RadioGroup"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="25dp"
+        app:layout_constraintTop_toBottomOf="@id/titleMenu"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:gravity="center">
+
+        <EditText
+            android:id="@+id/addFechaCitaMedico"
+            android:hint="Fecha cita médico"
+            android:layout_width="187dp"
+            android:layout_height="88dp"
+            android:background="#FFFFFF"
+            android:autofillHints="DD/MM/AA"
+            app:layout_constraintTop_toBottomOf="@id/titleMenu"
+            android:inputType="date"
+            android:focusable="false"
+            android:clickable="true"
+            android:gravity="center"
+            tools:ignore="LabelFor" />
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/titleMenuTwo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Selecciona la hora de la alarma"
+        android:textSize="26sp"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@id/RadioGroup"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="30dp"
+        android:gravity="center"/>
+
+    <RadioGroup
+        android:id="@+id/RadioGroupFormat"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/titleMenuTwo"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:gravity="center">
+
+
+        <EditText
+            android:id="@+id/addHoraAlarmaCitaMedico"
+            android:hint="Hora alarma"
+            android:layout_width="187dp"
+            android:layout_height="88dp"
+            android:background="#FFFFFF"
+            android:focusable="false"
+            android:clickable="true"
+            app:layout_constraintTop_toBottomOf="@id/titleMenuTwo"
+            tools:src="@drawable/camera_icon"
+            android:autofillHints="Fecha Inicio"
+            android:inputType="date"
+            tools:ignore="LabelFor"
+            android:gravity="center"/>
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/ReturnButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Atras"
+        android:backgroundTint="#ec407a"
+        tools:ignore="MissingConstraints"
+        android:textColor="#ffff"
+        app:layout_constraintTop_toBottomOf="@+id/RadioGroupFormat"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="25dp"
+        android:layout_marginBottom="25dp">
+    </Button>
+
+    <Button
+        android:id="@+id/ContinueButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Continuar"
+        android:backgroundTint="#26c6da"
+        tools:ignore="MissingConstraints"
+        android:textColor="#ffff"
+        app:layout_constraintTop_toBottomOf="@+id/RadioGroupFormat"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="25dp">
+    </Button>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

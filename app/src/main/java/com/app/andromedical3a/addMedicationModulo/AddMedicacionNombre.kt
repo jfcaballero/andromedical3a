@@ -81,7 +81,7 @@ class AddMedicacionNombre : Fragment() {
             addFotoMedicacion.isSelected = true
             val imageCamera = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
             startActivityForResult(imageCamera,REQUEST_IMAGE_CAPTURE)
-            //Log.i(com.app.andromedical3a.TAG, "Pulsando boton tomar foto")
+            //Log.i(com.app.andromedical3a.calendarModulo.TAG, "Pulsando boton tomar foto")
         }
 
         grabarButton.setOnClickListener {
@@ -109,18 +109,16 @@ class AddMedicacionNombre : Fragment() {
                 dlgAlert.setMessage("Va a grabar una medicacion.\n\n ")
                 dlgAlert.setPositiveButton("SI") { _, _ ->
                     sharedMedication.setNombreMedicacion(nombreMedicamento.text.toString())
-                    if (!sharedMedication.ValueMedicacionDiaria.value!!)
-                    {
-                        medicacion = sharedMedication.addMedicationToBBDDConTomasMensuales()
+                    medicacion = if (!sharedMedication.ValueMedicacionDiaria.value!!) {
                         sharedMedication.ValuehoraTomasTotales.value?.forEach { day ->
                             initAlarm(day)
                         }
-                    }
-                    else {
-                        medicacion = sharedMedication.addMedicacionABBDD()
+                        sharedMedication.addMedicationToBBDDConTomasMensuales()
+                    } else {
                         sharedMedication.ValuehoraTomasTotales.value?.forEach { day ->
                             initAlarmEachDay(day)
                         }
+                        sharedMedication.addMedicacionABBDD()
                     }
                 callbacks?.administrationModulo()
                 }
@@ -209,6 +207,7 @@ class AddMedicacionNombre : Fragment() {
 
         val id = (0..1000000).random()
         sharedMedication.setidsAlarmass(id.toString())
+
         intent.putExtra("fotoMedicacion", sharedMedication.ValueFotoMedicacion.value)
         intent.putExtra("tomaDiaria", sharedMedication.ValueCantidadToma.value)
         intent.putExtra("comentarioToma", sharedMedication.ValueComentarioTomas.value)

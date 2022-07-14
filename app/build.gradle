@@ -8,11 +8,10 @@ apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 28
-    buildToolsVersion "30.0.2"
 
     defaultConfig {
         applicationId "com.app.andromedical3a"
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -57,4 +56,5 @@ dependencies {
     annotationProcessor 'androidx.room:room-compiler:2.2.6'
     implementation 'com.jakewharton:butterknife:7.0.1'
     implementation "com.android.support:support-compat:28.0.0"
+    implementation 'org.naishadhparmar.zcustomcalendar:zcustomcalendar:1.0.1'
 }

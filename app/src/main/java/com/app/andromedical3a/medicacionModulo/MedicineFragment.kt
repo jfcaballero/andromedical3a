@@ -1,4 +1,4 @@
-package com.app.andromedical3a
+package com.app.andromedical3a.medicacionModulo
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.app.andromedical3a.R
 import com.app.andromedical3a.addMedicationModulo.Medicacion
 import com.app.andromedical3a.administrationModulo.AdministrationMedicineViewModel
 import java.text.SimpleDateFormat
@@ -75,13 +76,13 @@ class MedicineFragment : Fragment() {
 
 
         medicineViewModel.listaMedicacionLiveData.observe(
-            viewLifecycleOwner, { medicacion ->
-                medicacion?.let {
-                    Log.d(TAG, "Numero de medicamentos : ${medicacion.size}")
-                    mostrarMedicacion(medicacion)
-                }
+            viewLifecycleOwner
+        ) { medicacion ->
+            medicacion?.let {
+                Log.d(TAG, "Numero de medicamentos : ${medicacion.size}")
+                mostrarMedicacion(medicacion)
             }
-        )
+        }
 
     }
 

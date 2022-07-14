@@ -1,6 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Public/Documents/andromedical3a/app/src/main/res/drawable/absent_view.xml" value="0.3645" />
+        <entry key="..\:/Users/Public/Documents/andromedical3a/app/src/main/res/drawable/current_view.xml" value="0.3635" />
+        <entry key="..\:/Users/Public/Documents/andromedical3a/app/src/main/res/drawable/default_view.xml" value="0.3635" />
+        <entry key="..\:/Users/Public/Documents/andromedical3a/app/src/main/res/layout-v21/absent_view.xml" value="0.32472826086956524" />
+        <entry key="..\:/Users/Public/Documents/andromedical3a/app/src/main/res/layout-v21/fragment_administration_citamedico.xml" value="0.2509057971014493" />
+        <entry key="..\:/Users/Public/Documents/andromedical3a/app/src/main/res/layout-v21/fragment_alarm_citamedico.xml" value="0.3703125" />
+        <entry key="..\:/Users/Public/Documents/andromedical3a/app/src/main/res/layout-v21/fragment_calendar.xml" value="0.265" />
+        <entry key="..\:/Users/Public/Documents/andromedical3a/app/src/main/res/layout-v21/fragment_citamedico.xml" value="0.1625" />
+        <entry key="..\:/Users/Public/Documents/andromedical3a/app/src/main/res/layout-v21/fragment_detalle_citamedico.xml" value="0.33" />
+        <entry key="..\:/Users/Public/Documents/andromedical3a/app/src/main/res/layout-v21/fragment_detalle_citamedico_admin.xml" value="0.2672239108409321" />
+        <entry key="..\:/Users/Public/Documents/andromedical3a/app/src/main/res/layout-v21/fragment_detalle_medicine_admin.xml" value="0.2672239108409321" />
+        <entry key="..\:/Users/Public/Documents/andromedical3a/app/src/main/res/layout-v21/list_citamedico.xml" value="0.1762917933130699" />
+        <entry key="..\:/Users/Public/Documents/andromedical3a/app/src/main/res/layout-v21/present_view.xml" value="0.14166666666666666" />
+        <entry key="..\:/Users/Public/Documents/andromedical3a/app/src/main/res/layout/fragment_activity_main.xml" value="0.2509057971014493" />
+        <entry key="..\:/Users/Public/Documents/andromedical3a/app/src/main/res/layout/fragment_administration.xml" value="0.37083333333333335" />
+        <entry key="..\:/Users/Public/Documents/andromedical3a/app/src/main/res/layout/fragment_alarm.xml" value="0.3703125" />
+        <entry key="..\:/Users/Public/Documents/andromedical3a/app/src/main/res/layout/fragment_citaMedico_fecha_cita_alarma.xml" value="0.2703125" />
+        <entry key="..\:/Users/Public/Documents/andromedical3a/app/src/main/res/layout/fragment_citamedico_grabar_cita.xml" value="0.33" />
+        <entry key="..\:/Users/Public/Documents/andromedical3a/app/src/main/res/layout/fragment_detalle_medicine.xml" value="0.4116847826086957" />
+        <entry key="..\:/Users/Public/Documents/andromedical3a/app/src/main/res/layout/fragment_medicacion_diaria_o_no.xml" value="0.14221014492753623" />
+        <entry key="..\:/Users/Public/Documents/andromedical3a/app/src/main/res/layout/fragment_medicacion_fecha_inicio_final.xml" value="0.2703125" />
+        <entry key="..\:/Users/Public/Documents/andromedical3a/app/src/main/res/layout/fragment_medicacion_grabar_medicine.xml" value="0.13802083333333334" />
+        <entry key="..\:/Users/Public/Documents/andromedical3a/app/src/main/res/layout/fragment_medicine.xml" value="0.55" />
+        <entry key="..\:/Users/Public/Documents/andromedical3a/app/src/main/res/layout/list_medicine.xml" value="0.2509057971014493" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>

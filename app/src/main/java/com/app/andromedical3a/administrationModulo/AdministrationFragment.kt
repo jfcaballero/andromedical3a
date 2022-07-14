@@ -18,6 +18,7 @@ class AdministrationFragment : Fragment() {
 
     interface Callbacks {
         fun administrationMedicineModulo()
+        fun administrationCitaMedicoModulo()
     }
 
     private lateinit var backbutton: ImageButton
@@ -85,6 +86,9 @@ class AdministrationFragment : Fragment() {
             callbacks?.administrationMedicineModulo()
         }
 
+        citeDoctorButton.setOnClickListener {
+            callbacks?.administrationCitaMedicoModulo()
+        }
     }
 
     override fun onDestroy() {

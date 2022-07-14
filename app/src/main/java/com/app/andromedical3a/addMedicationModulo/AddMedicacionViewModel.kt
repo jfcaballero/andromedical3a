@@ -128,9 +128,9 @@ class AddMedicacionViewModel : ViewModel(){
         }
     }
 
-    fun setidsAlarmass(ids: String)
+    fun setidsAlarmass(id: String)
     {
-        ValueoidsAlarmas.value?.add(ids)
+        ValueoidsAlarmas.value?.add(id)
     }
 
     fun setDiasTomasMensuales(dias: String)
@@ -144,7 +144,7 @@ class AddMedicacionViewModel : ViewModel(){
             15, 30 -> getDaysBetweenDatesMonth(ValueFechaInicio.value, ValueFechaFinal.value, ValueDiasMedicacionMensual.value!!)
         }
 
-        val medicacion = Medicacion(ValuenombreMedicacion.value!!, ValueFechaInicio.value!!, ValueFechaFinal.value!!, ValueCantidadTotal.value!!,ValueCantidadToma.value!!, ValueComentarioTomas.value!!, ValuehoraTomasTotales.value!!, ValueFotoMedicacion.value!!, ValueMedicacionDiaria.value!!,ValueTomasMensuales.value!!,ValueoidsAlarmas.value!!)
+        val medicacion = Medicacion(UUID.randomUUID(),ValuenombreMedicacion.value!!, ValueFechaInicio.value!!, ValueFechaFinal.value!!, ValueCantidadTotal.value!!,ValueCantidadToma.value!!, ValueComentarioTomas.value!!, ValuehoraTomasTotales.value!!, ValueFotoMedicacion.value!!, ValueMedicacionDiaria.value!!,ValueTomasMensuales.value!!,ValueoidsAlarmas.value!!)
         medicacionRepositorio.addMedicacion(medicacion)
 
         return medicacion
@@ -152,7 +152,7 @@ class AddMedicacionViewModel : ViewModel(){
 
     fun addMedicacionABBDD(): Medicacion {
 
-        val medicacion = Medicacion(ValuenombreMedicacion.value!!, ValueFechaInicio.value!!, ValueFechaFinal.value!!, ValueCantidadTotal.value!!,ValueCantidadToma.value!!, ValueComentarioTomas.value!!, ValuehoraTomasTotales.value!!, ValueFotoMedicacion.value!!, ValueMedicacionDiaria.value!!,ValueTomasMensuales.value!!,ValueoidsAlarmas.value!!)
+        val medicacion = Medicacion(UUID.randomUUID(),ValuenombreMedicacion.value!!, ValueFechaInicio.value!!, ValueFechaFinal.value!!, ValueCantidadTotal.value!!,ValueCantidadToma.value!!, ValueComentarioTomas.value!!, ValuehoraTomasTotales.value!!, ValueFotoMedicacion.value!!, ValueMedicacionDiaria.value!!,ValueTomasMensuales.value!!,ValueoidsAlarmas.value!!)
         medicacionRepositorio.addMedicacion(medicacion)
 
         return medicacion

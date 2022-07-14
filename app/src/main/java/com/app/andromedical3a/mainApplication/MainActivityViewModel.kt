@@ -1,4 +1,4 @@
-package com.app.andromedical3a
+package com.app.andromedical3a.mainApplication
 
 import androidx.lifecycle.ViewModel
 
