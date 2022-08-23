@@ -11,7 +11,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.app.andromedical3a.R
 import com.app.andromedical3a.addCitaMedicoModulo.*
 import com.app.andromedical3a.addMedicationModulo.*
+import com.app.andromedical3a.administrationMedicineModulo.Medicacion
 import com.app.andromedical3a.administrationAlarmMedicine.MyBroadcastReceiver
+import com.app.andromedical3a.administrationCitaMedicoModulo.CitaMedico
 import com.app.andromedical3a.administrationModulo.*
 import com.app.andromedical3a.calendarModulo.CalendarFragment
 import com.app.andromedical3a.citaMedicoModulo.CitaMedicoFragment

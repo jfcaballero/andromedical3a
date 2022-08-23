@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#5EC1D1"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
@@ -70,16 +71,12 @@
 
         <ImageButton
             android:id="@+id/addFotoMedicamento"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="#FFFFFF"
-            android:drawableBottom="@drawable/camera_icon"
-            android:src="@drawable/camera_icon"
+            android:layout_width="48dp"
+            android:layout_height="47dp"
+            android:background="@mipmap/camara"
+            android:state_selected="true"
             android:textColor="@color/material_on_background_emphasis_high_type"
-            app:icon="@drawable/camera_icon"
-            app:layout_constraintTop_toBottomOf="@id/titleMenuTwo"
-            tools:src="@drawable/camera_icon"
-            android:state_selected="true"/>
+            app:layout_constraintTop_toBottomOf="@id/titleMenuTwo" />
 
     </RadioGroup>
 
@@ -102,7 +99,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Grabar"
-        android:backgroundTint="#26c6da"
+        android:backgroundTint="#2CDA26"
         tools:ignore="MissingConstraints"
         android:textColor="#ffff"
         app:layout_constraintTop_toBottomOf="@+id/RadioGroupFormat"

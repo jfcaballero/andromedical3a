@@ -1,6 +1,7 @@
 package com.app.andromedical3a.administrationModulo
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
@@ -9,7 +10,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
@@ -17,9 +17,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.app.andromedical3a.R
-import com.app.andromedical3a.addCitaMedicoModulo.AddCitaMedicoFechayAlarma
-import com.app.andromedical3a.addCitaMedicoModulo.CitaMedico
-import com.app.andromedical3a.addMedicationModulo.Medicacion
+import com.app.andromedical3a.administrationCitaMedicoModulo.CitaMedico
 import java.text.SimpleDateFormat
 
 
@@ -112,6 +110,18 @@ class AdministrationCitaMedicoFragment : Fragment() {
             activity?.onBackPressed()
         }
 
+        helpbutton.setOnClickListener {
+            val dlgAlert = AlertDialog.Builder(this.context)
+            dlgAlert.setTitle("VENTANA DE AYUDA")
+            dlgAlert.setMessage("Esta en la ADMINISTRACIÓN DE CITAS MEDICAS, aquí se muestran una lista con todos las citas medicas asignadas. \n\n" +
+                    "Si desea consultar una cita en profuncidad, pulse sobre ella. \n\n" +
+            "Si desea añadir alguna CITA MÉDICA pulse en el botón del medico\n\n" +
+            "Si desea eliminar una CITA MÉDICA, pulse sobre ella y seleccione el boton de BORRAR CITA MÉDICA")
+            dlgAlert.setPositiveButton("OK", null);
+            dlgAlert.setCancelable(true);
+            dlgAlert.create().show();
+        }
+
         addmcitaMedico.setOnClickListener {
             Log.i(TAG, "Pulsando en addmcitaMedico $TAG")
             callbacks?.addCitaMedico()
@@ -177,13 +187,13 @@ class AdministrationCitaMedicoFragment : Fragment() {
             fun setData(citaMedico: CitaMedico, position: Int) {
                 mposition = position
                 //Add data of bbdd to display
-                citaMedica.text = "  Medico  \n" + citaMedico.nombreMedico
+                citaMedica.text = citaMedico.nombreMedico
                 informacionCita.text = citaMedico.informacion_cita
                 //imageMedicine.setImageBitmap(medicacion.foto_medicacion)
                 val spf = SimpleDateFormat("dd/MMM/yyyy HH:mm")
                 val spfHours = SimpleDateFormat("HH:mm")
-                detalleFechaCita.text = "  Cita  \n" + spf.format(citaMedico.fecha_cita)
-                detalleAlarmaCita.text = "  Alarma  \n"+ spfHours.format(citaMedico.hora_alarma)
+                detalleFechaCita.text = spf.format(citaMedico.fecha_cita)
+                detalleAlarmaCita.text = spfHours.format(citaMedico.hora_alarma)
                 //detallemonodosis.text = "Dosis tomadas: " + medicacion.numero_dosis.toString()
             }
 

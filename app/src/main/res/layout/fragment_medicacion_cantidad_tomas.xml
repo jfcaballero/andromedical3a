@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#5EC1D1"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
@@ -31,15 +32,15 @@
         <EditText
             android:id="@+id/addCantidadTomas"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Ejemplo: 0.25, 0.5, 0.75, 1, etc"
-            app:layout_constraintTop_toBottomOf="@id/titleMenu"
-            android:textColor="@color/material_on_background_emphasis_high_type"
-            android:ems="10"
-            android:inputType="numberDecimal"
+            android:layout_height="match_parent"
             android:autofillHints="1"
-            tools:ignore="LabelFor"
-            android:layout_marginTop="30dp"/>
+            android:background="@mipmap/fondo_blanco"
+            android:ems="10"
+            android:hint="Ejemplo: 0.25, 0.5, 0.75, 1, etc"
+            android:inputType="numberDecimal"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/titleMenu"
+            tools:ignore="LabelFor" />
 
     </RadioGroup>
 
@@ -47,7 +48,7 @@
         android:id="@+id/titleMenuTwo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Introduzca el tipo de formato de medicamento para que aparezca en la notificacion"
+        android:text="Seleccione el tipo de formato de medicamento para que aparezca en la notificacion"
         android:textSize="26sp"
         android:textColor="@color/black"
         app:layout_constraintTop_toBottomOf="@id/RadioGroup"
@@ -68,17 +69,13 @@
         android:gravity="center">
 
 
-        <EditText
+        <Spinner
             android:id="@+id/addTipoMedicamento"
-            android:hint="Ejemplo: pastilla, jeringa, papelillo, comprimito, etc"
-            app:layout_constraintTop_toBottomOf="@id/titleMenuTwo"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@mipmap/fondo_blanco"
             android:textSize="14sp"
-            android:layout_marginTop="30dp"
-            android:inputType="textCapCharacters"
-            android:textColor="@color/material_on_background_emphasis_high_type"
-            android:autofillHints="pastilla;jeringuilla;comprimido;papelillo" />
+            app:layout_constraintTop_toBottomOf="@id/titleMenuTwo"/>
 
     </RadioGroup>
 
@@ -101,7 +98,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Continuar"
-        android:backgroundTint="#26c6da"
+        android:backgroundTint="#2CDA26"
         tools:ignore="MissingConstraints"
         android:textColor="#ffff"
         app:layout_constraintTop_toBottomOf="@+id/RadioGroupFormat"

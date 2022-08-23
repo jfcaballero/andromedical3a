@@ -4,78 +4,147 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#5EC1D1"
+    android:orientation="horizontal"
     tools:context=".mainApplication.MainActivity">
 
-    <Button
-        android:id="@+id/calendario"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="108dp"
-        android:text="@string/calendario"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView" />
-
-    <Button
-        android:id="@+id/cita_medico"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="108dp"
-        android:gravity="center"
-        android:text="@string/cita_medico"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calendario" />
-
-    <Button
-        android:id="@+id/pastillas"
-        android:layout_width="246dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="108dp"
-        android:text="@string/pastillas"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cita_medico" />
-
-    <ImageButton
-        android:id="@+id/help_icon"
-        android:layout_width="55dp"
-        android:layout_height="63dp"
-        android:background="#FFFFFF"
-        android:contentDescription="@string/help_icon"
-        android:scaleType="centerCrop"
+    <ImageView
+        android:id="@+id/fondoBlancoMedicacion"
+        android:layout_width="151dp"
+        android:layout_height="160dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@mipmap/help_icon" />
-
-    <ImageButton
-        android:id="@+id/setting_icon"
-        android:layout_width="55dp"
-        android:layout_height="63dp"
-        android:background="#FFFFFF"
-        android:contentDescription="@string/setting_icon"
-        android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/help_icon"
-        app:srcCompat="@mipmap/setting_icon" />
+        app:layout_constraintStart_toEndOf="@+id/fondoBlancoCitaMedico"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/background_white" />
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:contentDescription="@string/image_medication"
+        android:id="@+id/fondoBlancoCalendario"
+        android:layout_width="151dp"
+        android:layout_height="160dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/fondoBlancoCitaMedico"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/background_white" />
+
+    <ImageView
+        android:id="@+id/fondoBlancoCitaMedico"
+        android:layout_width="151dp"
+        android:layout_height="160dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/pastillasmain" />
+        app:srcCompat="@drawable/background_white" />
+
+    <TextView
+        android:id="@+id/textcalendario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="MEDICACIÓN"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/pastillas"
+        app:layout_constraintStart_toStartOf="@+id/pastillas"
+        app:layout_constraintTop_toBottomOf="@+id/pastillas"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textCitaMedico"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="CITA MÉDICO"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/cita_medico"
+        app:layout_constraintStart_toStartOf="@+id/cita_medico"
+        app:layout_constraintTop_toBottomOf="@+id/cita_medico"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textCalendario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CALENDARIO"
+        android:layout_marginTop="10dp"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/calendario"
+        app:layout_constraintStart_toStartOf="@+id/calendario"
+        app:layout_constraintTop_toBottomOf="@+id/calendario" />
+
+    <ImageButton
+        android:id="@+id/calendario"
+        android:layout_width="146dp"
+        android:layout_height="156dp"
+        android:adjustViewBounds="true"
+        android:background="@mipmap/calendario"
+        android:padding="25dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/fondoBlancoCitaMedico"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/cita_medico"
+        style="@style/FondoBlancoBotones"
+        android:layout_width="146dp"
+        android:layout_height="156dp"
+        android:background="@mipmap/doctor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.500"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.500" />
+
+    <ImageButton
+        android:id="@+id/pastillas"
+        android:layout_width="145dp"
+        android:layout_height="156dp"
+        android:adjustViewBounds="true"
+        android:background="@mipmap/frasco_de_pastillas"
+        android:padding="25dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/fondoBlancoCitaMedico"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <ImageButton
+        android:id="@+id/setting_icon"
+        android:layout_width="79dp"
+        android:layout_height="82dp"
+        android:background="@mipmap/usuario_gestor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        android:layout_marginEnd="25dp"
+        />
+
+    <ImageButton
+        android:id="@+id/help_icon"
+        android:layout_width="79dp"
+        android:layout_height="82dp"
+        android:background="@mipmap/pregunta"
+        android:contentDescription="@string/help_icon"
+        android:layout_marginStart="25dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

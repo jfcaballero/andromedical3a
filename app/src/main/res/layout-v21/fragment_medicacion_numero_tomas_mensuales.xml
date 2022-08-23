@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#5EC1D1"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
@@ -30,38 +31,44 @@
 
         <RadioButton
             android:id="@+id/FirstButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@mipmap/fondo_blanco"
             android:text="Un dia a la semana    "
             />
         <RadioButton
             android:id="@+id/SecondButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:background="@mipmap/fondo_blanco"
+            android:layout_height="match_parent"
             android:text="Dos dias a la semana    "
             />
         <RadioButton
             android:id="@+id/ThirdtButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@mipmap/fondo_blanco"
             android:text="Tres dias a la semana  "
             />
         <RadioButton
             android:id="@+id/FourButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:background="@mipmap/fondo_blanco"
+            android:layout_height="match_parent"
             android:text="Cinco dias a la semana"
             />
         <RadioButton
             android:id="@+id/FiveButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@mipmap/fondo_blanco"
             android:text="Cada 15 dias   "
             />
         <RadioButton
             android:id="@+id/SixButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:background="@mipmap/fondo_blanco"
+            android:layout_height="match_parent"
             android:text="Una vez al mes  "
             />
 
@@ -88,7 +95,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Continuar"
-        android:backgroundTint="#26c6da"
+        android:backgroundTint="#2CDA26"
         tools:ignore="MissingConstraints"
         android:textColor="#ffff"
         app:layout_constraintTop_toBottomOf="@id/RadioGroup"

@@ -1,6 +1,7 @@
 package com.app.andromedical3a.calendarModulo
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -154,6 +155,15 @@ class CalendarFragment : Fragment() {
         backbutton.setOnClickListener {
             Log.i(TAG, "Saliendo de fragmento $TAG")
             activity?.onBackPressed()
+        }
+
+        helpbutton.setOnClickListener {
+            val dlgAlert = AlertDialog.Builder(this.context)
+            dlgAlert.setTitle("VENTANA DE AYUDA")
+            dlgAlert.setMessage("Esta en el CALENDARIO, aquí se muestra si existe alguna medicación para tomar en el mes. \n\n")
+            dlgAlert.setPositiveButton("OK", null);
+            dlgAlert.setCancelable(true);
+            dlgAlert.create().show();
         }
 
     }

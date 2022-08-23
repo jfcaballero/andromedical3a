@@ -1,8 +1,7 @@
 package com.app.andromedical3a.administrationModulo
 
 import androidx.lifecycle.ViewModel
-import com.app.andromedical3a.addCitaMedicoModulo.CitaMedico
-import com.app.andromedical3a.addMedicationModulo.Medicacion
+import com.app.andromedical3a.administrationCitaMedicoModulo.CitaMedico
 import com.app.andromedical3a.administrationCitaMedicoModulo.CitaMedicoRepository
 
 

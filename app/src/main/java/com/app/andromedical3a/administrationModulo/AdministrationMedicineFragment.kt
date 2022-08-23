@@ -1,6 +1,7 @@
 package com.app.andromedical3a.administrationModulo
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
@@ -17,7 +18,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.app.andromedical3a.R
-import com.app.andromedical3a.addMedicationModulo.Medicacion
+import com.app.andromedical3a.administrationMedicineModulo.Medicacion
 import java.text.SimpleDateFormat
 
 
@@ -111,6 +112,18 @@ class AdministrationMedicineFragment : Fragment() {
         backbutton.setOnClickListener {
             Log.i(TAG, "Saliendo de fragmento $TAG")
             activity?.onBackPressed()
+        }
+
+        helpbutton.setOnClickListener {
+            val dlgAlert = AlertDialog.Builder(this.context)
+            dlgAlert.setTitle("VENTANA DE AYUDA")
+            dlgAlert.setMessage("Esta en la ADMINISTRACIÓN DE MEDICACIONES, aquí se muestran una lista con todas medicaciones añadidas. \n\n" +
+                    "Si desea consultar una MEDICACIÓN en profuncidad, pulse sobre ella. \n\n" +
+                    "Si desea añadir alguna MEDICACIÓN pulse en botón del frasco de pastillas \n\n" +
+                    "Si desea eliminar una MEDICACIÓN, pulse sobre ella y seleccione el boton de BORRAR MEDICACIÓN")
+            dlgAlert.setPositiveButton("OK", null);
+            dlgAlert.setCancelable(true);
+            dlgAlert.create().show();
         }
 
         addmedication.setOnClickListener {

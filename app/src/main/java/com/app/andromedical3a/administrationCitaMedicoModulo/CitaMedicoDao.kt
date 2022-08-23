@@ -2,7 +2,6 @@ package com.app.andromedical3a.administrationCitaMedicoModulo
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.app.andromedical3a.addCitaMedicoModulo.CitaMedico
 import java.util.*
 
 @Dao

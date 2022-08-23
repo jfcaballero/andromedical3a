@@ -3,8 +3,6 @@ package com.app.andromedical3a.administrationCitaMedicoModulo
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.room.Room
-import com.app.andromedical3a.addCitaMedicoModulo.CitaMedico
-import com.app.andromedical3a.administrationMedicineModulo.MedicineRepository
 import java.util.*
 import java.util.concurrent.Executors
 

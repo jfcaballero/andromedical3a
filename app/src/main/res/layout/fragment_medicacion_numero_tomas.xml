@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#5EC1D1"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
@@ -29,34 +30,38 @@
 
         <RadioButton
             android:id="@+id/FirstButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Una toma diaria     "
-            />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@mipmap/fondo_blanco"
+            android:text="Una toma diaria     " />
         <RadioButton
             android:id="@+id/SecondButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@mipmap/fondo_blanco"
             android:text="Dos tomas diarias    "
             />
         <RadioButton
             android:id="@+id/ThirdtButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:background="@mipmap/fondo_blanco"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:text="Tres tomas diarias   "
             />
         <RadioButton
             android:id="@+id/FourButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@mipmap/fondo_blanco"
             android:text="Cuatro tomas diarias"
             />
+
         <RadioButton
             android:id="@+id/FiveButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Seis tomas diarias   "
-            />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@mipmap/fondo_blanco"
+            android:text="Seis tomas diarias   " />
 
 
 
@@ -81,7 +86,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Continuar"
-        android:backgroundTint="#26c6da"
+        android:backgroundTint="#2CDA26"
         tools:ignore="MissingConstraints"
         android:textColor="#ffff"
         app:layout_constraintTop_toBottomOf="@id/RadioGroup"

@@ -1,10 +1,9 @@
 package com.app.andromedical3a.addCitaMedicoModulo
 
-import android.graphics.Bitmap
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.app.andromedical3a.administrationCitaMedicoModulo.CitaMedico
 import com.app.andromedical3a.administrationCitaMedicoModulo.CitaMedicoRepository
-import com.app.andromedical3a.administrationMedicineModulo.MedicineRepository
 import java.util.*
 
 

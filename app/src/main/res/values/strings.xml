@@ -32,4 +32,11 @@
     <string name="fecha_alarma">Fecha alarma:</string>
     <string name="informacion_cita">Informacion cita:</string>
     <string name="comentarios_cita">Comentarios cita</string>
+    <string-array name="tipoDosis">
+        <item>Pastilla</item>
+        <item>Jeringuilla</item>
+        <item>Papelillo</item>
+        <item>Comprimido</item>
+    </string-array>
+
 </resources>

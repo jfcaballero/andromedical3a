@@ -4,27 +4,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="#5EC1D1"
     android:layout_height="match_parent">
-
-    <ImageView
-        android:id="@+id/imageViewAdministration2"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:contentDescription="@string/image_medication"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/pastillasmain" />
 
     <ImageButton
         android:id="@+id/back_button_administration_medicine"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:adjustViewBounds="false"
-        android:background="#FFFFFF"
         android:clickable="true"
         android:contentDescription="@string/back_icon"
         android:focusable="true"
@@ -33,10 +20,10 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:src="@mipmap/back_icon" />
+        android:background="@mipmap/atras" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_margin="65dp"
+        android:layout_margin="70dp"
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -44,30 +31,28 @@
 
     <ImageButton
         android:id="@+id/help_icon_administration_medicine"
-        android:layout_width="55dp"
-        android:layout_height="63dp"
-        android:background="#FFFFFF"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:contentDescription="@string/help_icon"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@mipmap/help_icon" />
+        android:background="@mipmap/pregunta" />
 
     <ImageButton
         android:id="@+id/addMedication"
-        android:layout_width="75dp"
-        android:layout_height="66dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_marginStart="290dp"
         android:layout_marginLeft="290dp"
-        android:background="#FFFFFF"
         android:contentDescription="@string/add_medication"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/help_icon_administration_medicine"
-        app:srcCompat="@drawable/pills" />
+        android:background="@mipmap/frasco_de_pastillas" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

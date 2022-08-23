@@ -4,23 +4,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#5EC1D1"
     android:orientation="vertical">
 
 
     <ImageButton
         android:id="@+id/back_button_detail_medicine"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="648dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:adjustViewBounds="false"
-        android:background="#FFFFFF"
+        android:background="@mipmap/atras"
         android:clickable="true"
         android:contentDescription="@string/back_icon"
         android:focusable="true"
         android:scaleType="centerCrop"
-        android:src="@mipmap/back_icon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/blanco_con_borde_blanco"
+        tools:layout_editor_absoluteX="-25dp" />
+
+    <TextView
+        android:id="@+id/TituloMedicacion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@color/purple_500"
+        android:gravity="center"
+        android:text="Nombre Medicación"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -28,16 +50,19 @@
         android:id="@+id/nombreMedicacion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:textSize="40sp"
+        android:textSize="20sp"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:background="@color/white"
         android:text="Nombre medicacion"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/TituloMedicacion" />
 
     <ImageView
         android:id="@+id/imageMedicacion"
         android:layout_width="wrap_content"
+        android:background="@color/white"
         android:layout_height="wrap_content"
         android:foregroundGravity="center"
         app:layout_constraintEnd_toEndOf="parent"
@@ -46,48 +71,109 @@
         app:layout_constraintTop_toBottomOf="@+id/nombreMedicacion" />
 
     <TextView
+        android:id="@+id/TituloFechaInicio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/purple_500"
+        android:text="Fecha Inicio"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageMedicacion" />
+
+    <TextView
         android:id="@+id/fechaInicio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:background="@color/white"
+        android:textAlignment="center"
         android:text="Fecha Inicio:"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="25dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageMedicacion" />
+        app:layout_constraintTop_toBottomOf="@+id/TituloFechaInicio"  />
+
+    <TextView
+        android:id="@+id/TituloFechaFin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/purple_500"
+        android:text="Fecha Fin"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fechaInicio" />
+
 
     <TextView
         android:id="@+id/fechaFinal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:textColor="@color/black"
+        android:textAlignment="center"
         android:text="Fecha Final:"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="25dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fechaInicio" />
+        app:layout_constraintTop_toBottomOf="@+id/TituloFechaFin" />
+
+    <TextView
+        android:id="@+id/TituloMonodosis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/purple_500"
+        android:text="Cantidad medicación tomada"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fechaFinal"  />
 
     <TextView
         android:id="@+id/tomasTotales"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:textColor="@color/black"
+        android:textAlignment="center"
         android:text="Tomas realizadas"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="25dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fechaFinal" />
+        app:layout_constraintTop_toBottomOf="@+id/TituloMonodosis" />
+
+    <TextView
+        android:id="@+id/TituloTomas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/purple_500"
+        android:text="Tomas"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tomasTotales" />
 
     <TextView
         android:id="@+id/horaTomas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hora de tomas"
+        android:background="@color/white"
+        android:textColor="@color/black"
+        android:text="Hora   de tomas"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="25dp"
+        android:textAlignment="center"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tomasTotales" />
+        app:layout_constraintTop_toBottomOf="@+id/TituloTomas" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

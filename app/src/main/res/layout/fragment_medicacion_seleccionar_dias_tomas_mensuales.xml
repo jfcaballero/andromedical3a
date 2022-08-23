@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#5EC1D1"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
@@ -30,44 +31,51 @@
 
         <CheckBox
             android:id="@+id/Monday"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@mipmap/fondo_blanco"
             android:text="Lunes   "
             />
         <CheckBox
             android:id="@+id/Tuesday"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@mipmap/fondo_blanco"
             android:text="Martes    "
             />
         <CheckBox
             android:id="@+id/Wednesday"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@mipmap/fondo_blanco"
             android:text="Miercoles  "
             />
         <CheckBox
             android:id="@+id/Thursday"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@mipmap/fondo_blanco"
             android:text="Jueves"
             />
         <CheckBox
             android:id="@+id/Friday"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:background="@mipmap/fondo_blanco"
+            android:layout_height="match_parent"
             android:text="Viernes  "
             />
         <CheckBox
             android:id="@+id/Saturday"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:background="@mipmap/fondo_blanco"
+            android:layout_height="match_parent"
             android:text="Sabado  "
             />
         <CheckBox
             android:id="@+id/Sunday"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:background="@mipmap/fondo_blanco"
+            android:layout_height="match_parent"
             android:text="Domingo  "
             />
 

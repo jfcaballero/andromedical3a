@@ -43,7 +43,7 @@ class ShowAlarmaMedicacion : AppCompatActivity() {
         val pendingIntent = PendingIntent.getBroadcast(applicationContext, intent.getIntExtra("requestCode", 0), myIntent, PendingIntent.FLAG_UPDATE_CURRENT)
 
         imagenMedicacion.setImageBitmap(intent.getParcelableExtra("fotoMedicacion"))
-        val mensajeAMostrar = intent.getFloatExtra("tomaDiaria", 0.0f).toString() + intent.getStringExtra("comentarioToma")
+        val mensajeAMostrar = intent.getFloatExtra("tomaDiaria", 0.0f).toString() + " " + intent.getStringExtra("comentarioToma")
         mensajeMedicacion.text = mensajeAMostrar
         medicacion.text = intent.getStringExtra("nombreMedicacion")
 

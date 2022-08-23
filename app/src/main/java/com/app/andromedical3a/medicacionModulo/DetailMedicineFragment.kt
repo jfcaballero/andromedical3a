@@ -15,7 +15,7 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.app.andromedical3a.R
-import com.app.andromedical3a.addMedicationModulo.Medicacion
+import com.app.andromedical3a.administrationMedicineModulo.Medicacion
 import java.io.Serializable
 import java.text.SimpleDateFormat
 import java.util.*
@@ -89,6 +89,11 @@ class DetailMedicineFragment : Fragment() {
         val spfhours = SimpleDateFormat("HH:mm")
         val spfdays = SimpleDateFormat("EEEE")
         val spf = SimpleDateFormat("dd/MMM/yyyy")
+
+        backbutton.setOnClickListener {
+            Log.i(TAG, "Saliendo de fragmento ${TAG}")
+            activity?.onBackPressed()
+        }
 
         fotoMedicacion.setImageBitmap(detailMedicineCitaViewModel.medicacion.foto_medicacion)
         tituloMedicacion.text = detailMedicineCitaViewModel.medicacion.name

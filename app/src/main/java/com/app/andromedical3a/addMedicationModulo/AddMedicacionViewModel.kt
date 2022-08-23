@@ -3,6 +3,7 @@ package com.app.andromedical3a.addMedicationModulo
 import android.graphics.Bitmap
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.app.andromedical3a.administrationMedicineModulo.Medicacion
 import com.app.andromedical3a.administrationMedicineModulo.MedicineRepository
 import java.util.*
 

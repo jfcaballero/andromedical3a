@@ -1,6 +1,7 @@
 package com.app.andromedical3a.medicacionModulo
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
@@ -17,7 +18,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.app.andromedical3a.R
-import com.app.andromedical3a.addMedicationModulo.Medicacion
+import com.app.andromedical3a.administrationMedicineModulo.Medicacion
 import com.app.andromedical3a.administrationModulo.AdministrationMedicineViewModel
 import java.text.SimpleDateFormat
 
@@ -100,6 +101,16 @@ class MedicineFragment : Fragment() {
             activity?.onBackPressed()
         }
 
+        helpbutton.setOnClickListener {
+            val dlgAlert = AlertDialog.Builder(this.context)
+            dlgAlert.setTitle("VENTANA DE AYUDA")
+            dlgAlert.setMessage("Esta en las MEDICACIONES, aquí se muestran una lista con todos las medicaciones asignadas. \n\n" +
+                    "Si desea consultar una medicación en profuncidad, pulse sobre ella.")
+            dlgAlert.setPositiveButton("OK", null);
+            dlgAlert.setCancelable(true);
+            dlgAlert.create().show();
+        }
+
     }
 
     override fun onDetach() {
@@ -162,9 +173,9 @@ class MedicineFragment : Fragment() {
                 medicamento.text = medicacion.name
                 imageMedicine.setImageBitmap(medicacion.foto_medicacion)
                 val spf = SimpleDateFormat("dd/MMM/yyyy")
-                detallefechainicio.text = "Inicio: " + spf.format(medicacion.fecha_inicio)
-                detallefechafin.text = "Fin: "+ spf.format(medicacion.fecha_fin)
-                detallemonodosis.text = "Dosis tomadas: " + medicacion.numero_dosis.toString()
+                detallefechainicio.text =  spf.format(medicacion.fecha_inicio)
+                detallefechafin.text = spf.format(medicacion.fecha_fin)
+                detallemonodosis.text = medicacion.numero_dosis.toString()
                 if (medicacion.medicacion_diaria) {
                     if (medicacion.tomas_diarias.size == 1) {
                         detalletomas.text = "Dosís diarias: X "

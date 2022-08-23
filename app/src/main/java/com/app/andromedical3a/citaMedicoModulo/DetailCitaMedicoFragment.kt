@@ -14,7 +14,7 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.app.andromedical3a.R
-import com.app.andromedical3a.addCitaMedicoModulo.CitaMedico
+import com.app.andromedical3a.administrationCitaMedicoModulo.CitaMedico
 import java.io.Serializable
 import java.text.SimpleDateFormat
 
@@ -73,9 +73,14 @@ class DetailCitaMedicoFragment : Fragment() {
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "LongLogTag")
     override fun onStart() {
         super.onStart()
+
+        backbutton.setOnClickListener {
+            Log.i(TAG, "Saliendo de fragmento $TAG")
+            activity?.onBackPressed()
+        }
 
         val spfhours = SimpleDateFormat("HH:mm")
         val spf = SimpleDateFormat("dd/MMM/yyyy HH:mm")

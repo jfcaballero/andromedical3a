@@ -25,7 +25,7 @@ import java.util.*
 private const val TAG = "MyBroadcastReceiverCitaMedica"
 
 private const val CHANNEL_ID = "NotificationCitaMedico"
-private const val notificationId = 1000
+private const val notificationId = 2000
 
 
 class MyBroadcastReceiverCitaMedica  : BroadcastReceiver() {
@@ -49,7 +49,7 @@ class MyBroadcastReceiverCitaMedica  : BroadcastReceiver() {
             vibrator.vibrate(2000000)
             var alarmUri: Uri? = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE)
             if (alarmUri == null) {
-                alarmUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+                alarmUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE)
             }
             val ringtone = RingtoneManager.getRingtone(context, alarmUri)
 
@@ -62,9 +62,9 @@ class MyBroadcastReceiverCitaMedica  : BroadcastReceiver() {
             val fullScreenIntent = Intent(context, ShowAlarmaCitaMedica::class.java).apply {
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 this.putExtra("nombreMedico", intent.getStringExtra("nombreMedico"))
-                this.putExtra("fechacita", intent.getParcelableExtra("fechacita") as Date)
-                this.putExtra("comentarioCitaMedico", intent.getStringExtra("nombreMedico"))
-                this.putExtra("horaAlarma", intent.getParcelableExtra("horaAlarma") as Date)
+                this.putExtra("fechacita", intent.getStringExtra("fechacita"))
+                this.putExtra("comentarioCitaMedico", intent.getStringExtra("comentarioCitaMedico"))
+                this.putExtra("horaAlarma", intent.getStringExtra("horaAlarma"))
                 this.putExtra("requestCode", intent.getIntExtra("requestCode",0))
 
             }
@@ -73,7 +73,7 @@ class MyBroadcastReceiverCitaMedica  : BroadcastReceiver() {
                 fullScreenIntent, PendingIntent.FLAG_UPDATE_CURRENT)
 
             val builder = NotificationCompat.Builder(context, CHANNEL_ID)
-                .setSmallIcon(R.drawable.pills)
+                .setSmallIcon(R.mipmap.doctor)
                 .setContentTitle("Alarma de cita medica")
                 .setContentText("Tiene una cita programada hoy.")
                 .setPriority(NotificationCompat.PRIORITY_HIGH)

@@ -3,32 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <ImageView
-        android:id="@+id/imageViewAdministration2"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:contentDescription="@string/image_medication"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/pastillasmain" />
+    android:layout_height="match_parent"
+    android:background="#5EC1D1"
+    android:orientation="horizontal">
 
     <ImageButton
         android:id="@+id/back_button_administration_citaMedico"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:adjustViewBounds="false"
-        android:background="#FFFFFF"
         android:clickable="true"
         android:contentDescription="@string/back_icon"
         android:focusable="true"
         android:scaleType="centerCrop"
-        android:src="@mipmap/back_icon"
+        android:background="@mipmap/atras"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,27 +24,58 @@
 
     <ImageButton
         android:id="@+id/help_icon_administration_citaMedico"
-        android:layout_width="55dp"
-        android:layout_height="63dp"
-        android:background="#FFFFFF"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:contentDescription="@string/help_icon"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@mipmap/help_icon" />
+        android:background="@mipmap/pregunta" />
 
     <org.naishadhparmar.zcustomcalendar.CustomCalendar
         android:id="@+id/calendar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        app:layout_constraintBottom_toBottomOf="@+id/imageViewAdministration2"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/purple_200"/>
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/verdeTexto"
+        android:layout_width="441dp"
+        android:layout_height="36dp"
+        android:text="Todas las medicaciones tomadas"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calendar"
+        android:layout_marginStart="10dp"
+        app:layout_constraintVertical_bias="0.139"
+        app:drawableLeftCompat="@mipmap/verde_calendar" />
+
+    <TextView
+        android:id="@+id/amarilloTexto"
+        android:layout_width="440dp"
+        android:layout_height="37dp"
+        android:text="Alguna medicación por tomar"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginStart="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.521"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/verdeTexto"
+        app:layout_constraintVertical_bias="0.08"
+        app:drawableLeftCompat="@mipmap/amarillo_calendar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

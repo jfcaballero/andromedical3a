@@ -25,9 +25,9 @@ class MainPageFragment : Fragment() {
 
     private lateinit var helpButton: ImageButton
     private lateinit var configurationButton: ImageButton
-    private lateinit var calendarButton: Button
-    private lateinit var citeDoctorButton: Button
-    private lateinit var medicineButton: Button
+    private lateinit var calendarButton: ImageButton
+    private lateinit var citeDoctorButton: ImageButton
+    private lateinit var medicineButton: ImageButton
 
 
     override fun onCreateView(
@@ -38,9 +38,9 @@ class MainPageFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_activity_main, container, false)
 
         configurationButton = view.findViewById(R.id.setting_icon) as ImageButton
-        calendarButton = view.findViewById(R.id.calendario) as Button
-        citeDoctorButton = view.findViewById(R.id.cita_medico) as Button
-        medicineButton = view.findViewById(R.id.pastillas) as Button
+        calendarButton = view.findViewById(R.id.calendario) as ImageButton
+        citeDoctorButton = view.findViewById(R.id.cita_medico) as ImageButton
+        medicineButton = view.findViewById(R.id.pastillas) as ImageButton
         helpButton = view.findViewById(R.id.help_icon) as ImageButton
 
 
@@ -71,8 +71,8 @@ class MainPageFragment : Fragment() {
             val dlgAlert = AlertDialog.Builder(this.context)
             dlgAlert.setTitle("VENTANA DE AYUDA")
             dlgAlert.setMessage("Pulse el boton de CALENDARIO, si desea ver el calendario de sus medicaciones.\n\n " +
-                    "Pulse el boton de CITA MEDICO, si desea comprobar si tiene añadida alguna cita medica.\n\n " +
-                    "Pulse el boton de PASTILLAS, si desea comprobar la lista de medicamentos que tiene asignados. \n\n")
+                    "Pulse el boton de CITA MÉDICO, si desea comprobar si tiene añadida alguna cita medica.\n\n " +
+                    "Pulse el boton de MEDICACIÓN, si desea comprobar la lista de medicamentos que tiene asignados. \n\n")
             dlgAlert.setPositiveButton("OK", null);
             dlgAlert.setCancelable(true);
             dlgAlert.create().show();

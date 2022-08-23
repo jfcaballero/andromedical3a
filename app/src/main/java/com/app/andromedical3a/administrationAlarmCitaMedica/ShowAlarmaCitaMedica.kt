@@ -13,6 +13,8 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.app.andromedical3a.R
+import java.text.SimpleDateFormat
+import java.util.*
 import kotlin.system.exitProcess
 
 
@@ -32,7 +34,7 @@ class ShowAlarmaCitaMedica : AppCompatActivity() {
     @SuppressLint("CutPasteId", "SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.fragment_citamedico)
+        setContentView(R.layout.fragment_alarm_citamedico)
         nombreMedico = findViewById(R.id.NombreMedico)
         horaCita = findViewById(R.id.horaCita)
         detalleCitaMedica = findViewById(R.id.detalleCitaMedica)
@@ -43,15 +45,16 @@ class ShowAlarmaCitaMedica : AppCompatActivity() {
         val myIntent = Intent(applicationContext, MyBroadcastReceiverCitaMedica::class.java)
         val pendingIntent = PendingIntent.getBroadcast(applicationContext, intent.getIntExtra("requestCode", 0), myIntent, PendingIntent.FLAG_UPDATE_CURRENT)
 
-        val mensajeAMostrar = intent.getStringExtra("fechacita")
-        horaCita.text = "Fecha: $mensajeAMostrar"
-        nombreMedico.text = "Doctor: " + intent.getStringExtra("nombreMedico")
+        val spf = SimpleDateFormat("dd/MMM/yyyy HH:mm")
+        val date = Date(intent.getStringExtra("fechacita"))
+        horaCita.text = spf.format(date)
+        nombreMedico.text = intent.getStringExtra("nombreMedico")
         detalleCitaMedica.text = intent.getStringExtra("comentarioCitaMedico")
 
-        Log.i(TAG, "Entrando ShowAlarmaMedicine")
+        Log.i(TAG, "Entrando ShowAlarmaCitaMedico")
 
         botonParar.setOnClickListener {
-            Log.i(TAG, "Saliendo de fragmento ShowAlarmaMedicine")
+            Log.i(TAG, "Saliendo de fragmento ShowAlarmaCitaMedico")
                 alarmManager.cancel(pendingIntent)
                 Log.i(TAG, "Alarma eliminada : " + intent.getIntExtra("requestCode", 0))
                 finish()

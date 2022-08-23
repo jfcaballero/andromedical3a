@@ -2,15 +2,17 @@ package com.app.andromedical3a.administrationModulo
 
 import android.app.AlertDialog
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import com.app.andromedical3a.R
+import com.app.andromedical3a.mainApplication.MainActivity
+
 
 private const val TAG = "Administration"
 
@@ -23,8 +25,8 @@ class AdministrationFragment : Fragment() {
 
     private lateinit var backbutton: ImageButton
     private lateinit var helpbutton: ImageButton
-    private lateinit var citeDoctorButton: Button
-    private lateinit var medicineButton: Button
+    private lateinit var citeDoctorButton: ImageButton
+    private lateinit var medicineButton: ImageButton
 
     private var callbacks: Callbacks? = null
 
@@ -50,8 +52,8 @@ class AdministrationFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_administration, container, false)
 
-        citeDoctorButton = view.findViewById(R.id.cita_medico_administration) as Button
-        medicineButton = view.findViewById(R.id.pastillas_administration) as Button
+        citeDoctorButton = view.findViewById(R.id.cita_medico) as ImageButton
+        medicineButton = view.findViewById(R.id.pastillas) as ImageButton
         backbutton = view.findViewById(R.id.back_button_administration) as ImageButton
         helpbutton = view.findViewById(R.id.help_icon_administration) as ImageButton
 
@@ -64,18 +66,19 @@ class AdministrationFragment : Fragment() {
 
         backbutton.setOnClickListener {
             Log.i(
-                com.app.andromedical3a.administrationModulo.TAG,
-                "Saliendo de fragmento ${com.app.andromedical3a.administrationModulo.TAG}"
+                TAG,
+                "Saliendo de fragmento $TAG"
             )
-            activity?.onBackPressed()
+            val intent = Intent(context, MainActivity::class.java)
+            startActivity(intent)
         }
 
         helpbutton.setOnClickListener {
             val dlgAlert = AlertDialog.Builder(this.context)
             dlgAlert.setTitle("MODULO ADMINISTRACION")
             dlgAlert.setMessage(
-                "Pulse el boton de CITA MEDICO, si desea añadir o modificar las citas medicas del usuario.\n\n " +
-                        "Pulse el boton de PASTILLAS, si desea añadir o modificar los tratamientos del usuario. \n\n"
+                "Pulse el boton de CITA MÉDICO, si desea añadir,eliminar o consultar las citas medicas del usuario.\n\n " +
+                        "Pulse el boton de MEDICACIÓN, si desea añadir,eliminar o consultar los tratamientos del usuario. \n\n"
             )
             dlgAlert.setPositiveButton("OK", null);
             dlgAlert.setCancelable(true);
