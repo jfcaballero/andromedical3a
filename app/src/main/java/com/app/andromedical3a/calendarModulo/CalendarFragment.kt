@@ -13,9 +13,11 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.app.andromedical3a.R
+import kotlinx.coroutines.flow.merge
 import org.naishadhparmar.zcustomcalendar.CustomCalendar
 import org.naishadhparmar.zcustomcalendar.Property
 import java.text.SimpleDateFormat
+import java.time.LocalDateTime
 import java.util.*
 
 
@@ -76,22 +78,35 @@ class CalendarFragment : Fragment() {
             medicaciones?.let {
                 Log.d(TAG, "Numero de medicamentos : ${medicaciones.size}")
 
-                medicaciones.forEach {
-                    medicacion ->
-                    val inicio : Date = medicacion.fecha_inicio
-                    val fin : Date = medicacion.fecha_fin
+                //Unimos todas las tomas, para pintar el calendario
+                val tomas_realizadas : MutableList<String> = arrayListOf()
+                var fecha_inicio_menor = Date()
+                var fecha_final_mayor  = Date()
+
+                medicaciones.forEach { medicacion ->
+                    tomas_realizadas += medicacion.tomas_realizadas
+
+                    if (medicacion.fecha_inicio < fecha_inicio_menor)
+                        fecha_inicio_menor = medicacion.fecha_inicio
+
+                    if (medicacion.fecha_fin > fecha_final_mayor)
+                        fecha_final_mayor = medicacion.fecha_fin
+
+                    }
+                    //Ordenamos lista
+                    tomas_realizadas.sort()
 
                     val descHashMap: HashMap<Any, Property> = HashMap()
 
                     val medicacionNoTomada = Property()
                     medicacionNoTomada.layoutResource = R.layout.present_view
-                    medicacionNoTomada.dateTextViewResource= R.id.text_view
+                    medicacionNoTomada.dateTextViewResource = R.id.text_view
                     descHashMap.put("present", medicacionNoTomada)
 
-                    val medicacionTomada  : Property = Property()
+                    val medicacionTomada: Property = Property()
                     medicacionTomada.layoutResource = R.layout.absent_view
-                    medicacionTomada.dateTextViewResource= R.id.text_view
-                    descHashMap.put("absent",medicacionTomada)
+                    medicacionTomada.dateTextViewResource = R.id.text_view
+                    descHashMap.put("absent", medicacionTomada)
 
                     calendar.setMapDescToProp(descHashMap)
 
@@ -101,46 +116,51 @@ class CalendarFragment : Fragment() {
 
                     val hoy: Calendar = Calendar.getInstance()
 
-                    hoy.time = inicio
+                    fecha_inicio_menor.hours = 0
+                    fecha_inicio_menor.minutes = 0
+                    fecha_inicio_menor.seconds = 0
+                    hoy.time = fecha_inicio_menor
                     //Pongo a amarillo todas las fechas hastas los tres meses siguientes
-                    while (hoy.time.before(fin)) {
+                    while (hoy.time.before(fecha_final_mayor)) {
                         if (hoy.time.month == calendarSave.time.month) {
                             dateHashmap.put(hoy.time.date,"absent")
                         }
+
                         hoy.add(Calendar.DATE, 1)
                     }
 
                     calendar.setDate(calendarSave,dateHashmap);
 
-                    if (medicacion.medicacion_diaria)
-                    {
-                        medicacion.tomas_diarias.forEach{
-                            val  diaActual = Calendar.getInstance()
-
-                            if (diaActual.time > Date(it))
-                                dateHashmap[diaActual.time.date] = "present"
-                        }
-
-                        calendar.setDate(calendarSave,dateHashmap);
-                    }
-                    else
-                    {
-
-                        medicacion.tomas_diarias.forEach {
-                            val sdf = SimpleDateFormat("EEE MMM dd", Locale.ENGLISH)
-                            val  diaActual = Calendar.getInstance()
-                            diaActual.time = sdf.parse(diaActual.time.toString())
-                            val fechaMedicacion = sdf.parse(it)
-                            if (diaActual.time.equals(fechaMedicacion))
+                    hoy.time = fecha_inicio_menor
+                    fecha_final_mayor.hours = 0
+                    fecha_final_mayor.minutes = 0
+                    fecha_final_mayor.seconds = 0
+                    //Pongo a amarillo todas las fechas hastas los tres meses siguientes
+                    while (hoy.time.before(fecha_final_mayor)) {
+                        tomas_realizadas.forEach {
+                            val sdf = SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH)
+                            val fecha = sdf.parse(it)
+                            val horaToma= sdf.parse(hoy.time.toString())
+                            fecha.hours = 0
+                            fecha.minutes = 0
+                            fecha.seconds = 0
+                            if (fecha.equals(horaToma))
                             {
-                                val  diaActualyHora = Calendar.getInstance()
-                                if (diaActualyHora.time > Date(it))
-                                    dateHashmap[diaActual.time.date] = "present"
+                                //Controlamos que si existe algun false en el dia actual, no cambie
+                                // el color del calendario
+                                if (it.contains("false"))
+                                    dateHashmap.put(hoy.time.date,"absent")
+
+                                if (it.contains("true"))
+                                    dateHashmap.put(hoy.time.date,"present")
                             }
                         }
-                        calendar.setDate(calendarSave,dateHashmap);
+
+                        hoy.add(Calendar.DATE, 1)
                     }
-                }
+
+                    calendar.setDate(calendarSave,dateHashmap);
+
 
             }
         }

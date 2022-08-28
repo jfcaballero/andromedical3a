@@ -1,6 +1,8 @@
 package com.app.andromedical3a.administrationMedicineModulo
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.room.Room
 import java.util.*
@@ -43,6 +45,24 @@ class MedicineRepository private constructor(context: Context) {
             medicacionDao.updateMedicacion(medicacion)
         }
 
+    }
+
+    @SuppressLint("LongLogTag")
+    fun setTomasRealizadasOfMedicacionByName(name : String, fecha : String){
+        executor.execute {
+            val medicacion = medicacionDao.findByName(name)
+            var i =0
+            val mutableList: MutableList<String> = mutableListOf()
+            for (fechaarecorrer in medicacion.tomas_realizadas){
+                mutableList.add(i,fechaarecorrer)
+                if (fechaarecorrer == "$fecha : false") {
+                    mutableList.set(i, fechaarecorrer.replace("false", "true"))
+                }
+                i += 1
+            }
+            medicacion.tomas_realizadas = mutableList
+            medicacionDao.updateMedicacion(medicacion)
+        }
     }
 
     fun deleteMedicacion(medicacion: Medicacion) {

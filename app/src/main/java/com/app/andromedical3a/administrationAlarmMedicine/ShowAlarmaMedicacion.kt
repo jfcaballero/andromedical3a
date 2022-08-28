@@ -52,6 +52,8 @@ class ShowAlarmaMedicacion : AppCompatActivity() {
         botonTomar.setOnClickListener {
             Log.i(TAG, "Saliendo de fragmento ShowAlarmaMedicine")
             showAlarmaMedicacionViewModel.sumarMedicacionTotal(intent.getStringExtra("nombreMedicacion"), intent.getFloatExtra("tomaDiaria", 0.0f))
+            //Modificar el valor de las tomasTomadas
+            showAlarmaMedicacionViewModel.actualizarTomasRealizadas(intent.getStringExtra("nombreMedicacion"),intent.getStringExtra("horaMedicacion"))
                 alarmManager.cancel(pendingIntent)
                 Log.i(TAG, "Alarma eliminada : " + intent.getIntExtra("requestCode", 0))
                 finish()

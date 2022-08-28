@@ -27,11 +27,15 @@ class ShowAlarmaMedicacionViewModel : ViewModel() {
             0.0f,
             0.0f,
             "",
-            emptyList(),bmp,false, 0,emptyList()
+            emptyList(),bmp,false, 0,emptyList(), emptyList()
         )
 
     fun sumarMedicacionTotal(name : String,sumar : Float) {
     medicacionRepositorio.setMedicacionByNameAndAddMedicacion(name,sumar)
+    }
+
+    fun actualizarTomasRealizadas(name : String,fecha : String){
+    medicacionRepositorio.setTomasRealizadasOfMedicacionByName(name,fecha)
     }
 
 }

@@ -181,11 +181,13 @@ class AddMedicacionNombre : Fragment() {
             intent.putExtra("comentarioToma", sharedMedication.ValueComentarioTomas.value)
             intent.putExtra("nombreMedicacion", sharedMedication.ValuenombreMedicacion.value)
             intent.putExtra("requestCode", id)
+            calendar.set(Calendar.HOUR_OF_DAY, hours.hours)
+            calendar.set(Calendar.MINUTE, hours.minutes)
+            intent.putExtra("horaMedicacion", calendar.time.toString())
 
             // Used for filtering inside Broadcast receiver intent.action = "MyBroadcastReceiverAction"
             val pendingIntent = PendingIntent.getBroadcast(context, id, intent, PendingIntent.FLAG_UPDATE_CURRENT)
-                calendar.set(Calendar.HOUR_OF_DAY, hours.hours)
-                calendar.set(Calendar.MINUTE, hours.minutes)
+            sharedMedication.setTomasRealizadas(calendar.time.toString() + " : false")
                 Log.i(TAG, "Días:" + calendar.time)
                 alarmManager.setRepeating(RTC_WAKEUP,
                         calendar.timeInMillis,
@@ -207,13 +209,14 @@ class AddMedicacionNombre : Fragment() {
 
         val id = (0..1000000).random()
         sharedMedication.setidsAlarmass(id.toString())
+        sharedMedication.setTomasRealizadas(calendar.time.toString() + " : false")
 
         intent.putExtra("fotoMedicacion", sharedMedication.ValueFotoMedicacion.value)
         intent.putExtra("tomaDiaria", sharedMedication.ValueCantidadToma.value)
         intent.putExtra("comentarioToma", sharedMedication.ValueComentarioTomas.value)
         intent.putExtra("nombreMedicacion", sharedMedication.ValuenombreMedicacion.value)
         intent.putExtra("requestCode", id)
-        intent.putExtra("horaMedicacion", calendar.time)
+        intent.putExtra("horaMedicacion", calendar.time.toString())
 
         // Used for filtering inside Broadcast receiver intent.action = "MyBroadcastReceiverAction"
         val pendingIntent = PendingIntent.getBroadcast(context, id, intent, PendingIntent.FLAG_UPDATE_CURRENT)
@@ -222,6 +225,7 @@ class AddMedicacionNombre : Fragment() {
         // Alarm.
         // setAlarmClock() - used for everything lower than Android M
         // setExactAndAllowWhileIdle() - used for everything on Android M and higher
+        Log.i(TAG, "Días:" + calendar.time)
         alarmManager.setRepeating(RTC_WAKEUP,
             calendar.timeInMillis,
             5*60*1000,

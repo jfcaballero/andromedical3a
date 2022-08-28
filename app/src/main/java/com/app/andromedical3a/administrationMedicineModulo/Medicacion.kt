@@ -8,6 +8,7 @@ import java.io.Serializable
 import java.lang.reflect.Array
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 @Entity
 data class Medicacion(@PrimaryKey val id: UUID = UUID.randomUUID(),
@@ -23,7 +24,8 @@ data class Medicacion(@PrimaryKey val id: UUID = UUID.randomUUID(),
         var foto_medicacion: Bitmap,
         var medicacion_diaria : Boolean,
         var tomas_mensuales : Int,
-        var id_alarmas :  List<String>
+        var id_alarmas :  List<String>,
+        var tomas_realizadas : List<String>,
 ): Serializable
 
 

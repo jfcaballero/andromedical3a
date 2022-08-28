@@ -26,7 +26,7 @@ class DetailMedicineViewModel : ViewModel() {
             0.0f,
             0.0f,
             "",
-            emptyList(),bmp,false,0,emptyList()
+            emptyList(),bmp,false,0,emptyList(), emptyList()
         )
     fun cargarMedicacion(medicacion: Medicacion)
     {

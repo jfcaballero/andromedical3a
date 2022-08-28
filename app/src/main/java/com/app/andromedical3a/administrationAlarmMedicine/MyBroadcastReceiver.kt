@@ -66,6 +66,8 @@ class MyBroadcastReceiver  : BroadcastReceiver() {
                 this.putExtra("nombreMedicacion", intent.getStringExtra("nombreMedicacion"))
                 this.putExtra("comentarioToma", intent.getStringExtra("comentarioToma"))
                 this.putExtra("requestCode", intent.getIntExtra("requestCode",0))
+                this.putExtra("horaMedicacion",intent.getStringExtra("horaMedicacion"))
+
 
             }
 

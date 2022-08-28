@@ -1,11 +1,13 @@
 package com.app.andromedical3a.addMedicationModulo
 
 import android.graphics.Bitmap
+import androidx.collection.arrayMapOf
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.app.andromedical3a.administrationMedicineModulo.Medicacion
 import com.app.andromedical3a.administrationMedicineModulo.MedicineRepository
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class AddMedicacionViewModel : ViewModel(){
@@ -21,6 +23,7 @@ class AddMedicacionViewModel : ViewModel(){
     private var fechaInicio = MutableLiveData<Date>()
     private var fechaFinal = MutableLiveData<Date>()
     private var idsAlarmas = MutableLiveData<ArrayList<String>>()
+    private var tomasRealizadas = MutableLiveData<ArrayList<String>>()
 
     //Medicacion no diaria
     private var medicacionDiaria = MutableLiveData(false)
@@ -41,11 +44,13 @@ class AddMedicacionViewModel : ViewModel(){
     var ValueMedicacionDiaria : MutableLiveData<Boolean> = medicacionDiaria
     var ValueTomasMensuales : MutableLiveData<Int> = numeroTomasMensuales
     var ValueDiasMedicacionMensual : MutableLiveData<ArrayList<String>> = diasMedicacionMensual
+    var ValueTomasRealizadas : MutableLiveData<ArrayList<String>> = tomasRealizadas
 
     init {
         ValuehoraTomasTotales.value = arrayListOf()
         ValueDiasMedicacionMensual.value = arrayListOf()
         ValueoidsAlarmas.value = arrayListOf()
+        ValueTomasRealizadas.value = arrayListOf()
     }
 
     fun setCantidadToma(total: Float)
@@ -88,6 +93,10 @@ class AddMedicacionViewModel : ViewModel(){
 
     fun setTomasMensuales(tomas: Int){
         ValueTomasMensuales.value = tomas
+    }
+
+    fun setTomasRealizadas(diayValue : String){
+        ValueTomasRealizadas.value?.add(diayValue)
     }
 
 
@@ -145,7 +154,8 @@ class AddMedicacionViewModel : ViewModel(){
             15, 30 -> getDaysBetweenDatesMonth(ValueFechaInicio.value, ValueFechaFinal.value, ValueDiasMedicacionMensual.value!!)
         }
 
-        val medicacion = Medicacion(UUID.randomUUID(),ValuenombreMedicacion.value!!, ValueFechaInicio.value!!, ValueFechaFinal.value!!, ValueCantidadTotal.value!!,ValueCantidadToma.value!!, ValueComentarioTomas.value!!, ValuehoraTomasTotales.value!!, ValueFotoMedicacion.value!!, ValueMedicacionDiaria.value!!,ValueTomasMensuales.value!!,ValueoidsAlarmas.value!!)
+
+        val medicacion = Medicacion(UUID.randomUUID(),ValuenombreMedicacion.value!!, ValueFechaInicio.value!!, ValueFechaFinal.value!!, ValueCantidadTotal.value!!,ValueCantidadToma.value!!, ValueComentarioTomas.value!!, ValuehoraTomasTotales.value!!, ValueFotoMedicacion.value!!, ValueMedicacionDiaria.value!!,ValueTomasMensuales.value!!,ValueoidsAlarmas.value!!,ValueTomasRealizadas.value!!)
         medicacionRepositorio.addMedicacion(medicacion)
 
         return medicacion
@@ -153,7 +163,7 @@ class AddMedicacionViewModel : ViewModel(){
 
     fun addMedicacionABBDD(): Medicacion {
 
-        val medicacion = Medicacion(UUID.randomUUID(),ValuenombreMedicacion.value!!, ValueFechaInicio.value!!, ValueFechaFinal.value!!, ValueCantidadTotal.value!!,ValueCantidadToma.value!!, ValueComentarioTomas.value!!, ValuehoraTomasTotales.value!!, ValueFotoMedicacion.value!!, ValueMedicacionDiaria.value!!,ValueTomasMensuales.value!!,ValueoidsAlarmas.value!!)
+        val medicacion = Medicacion(UUID.randomUUID(),ValuenombreMedicacion.value!!, ValueFechaInicio.value!!, ValueFechaFinal.value!!, ValueCantidadTotal.value!!,ValueCantidadToma.value!!, ValueComentarioTomas.value!!, ValuehoraTomasTotales.value!!, ValueFotoMedicacion.value!!, ValueMedicacionDiaria.value!!,ValueTomasMensuales.value!!,ValueoidsAlarmas.value!!,ValueTomasRealizadas.value!!)
         medicacionRepositorio.addMedicacion(medicacion)
 
         return medicacion

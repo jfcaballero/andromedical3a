@@ -49,25 +49,30 @@
 
     <TextView
         android:id="@+id/verdeTexto"
-        android:layout_width="441dp"
-        android:layout_height="36dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
         android:text="Todas las medicaciones tomadas"
+        android:textAlignment="textStart"
         android:textSize="20sp"
         android:textStyle="bold"
+        android:gravity="center"
+        app:drawableLeftCompat="@mipmap/verde_calendar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/calendar"
-        android:layout_marginStart="10dp"
         app:layout_constraintVertical_bias="0.139"
-        app:drawableLeftCompat="@mipmap/verde_calendar" />
+        tools:ignore="RtlCompat" />
 
     <TextView
         android:id="@+id/amarilloTexto"
-        android:layout_width="440dp"
-        android:layout_height="37dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="Alguna medicación por tomar"
         android:textSize="20sp"
+        android:textAlignment="textStart"
+        android:gravity="center"
         android:textStyle="bold"
         android:layout_marginStart="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -76,6 +81,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/verdeTexto"
         app:layout_constraintVertical_bias="0.08"
-        app:drawableLeftCompat="@mipmap/amarillo_calendar" />
+        app:drawableLeftCompat="@mipmap/amarillo_calendar"
+        tools:ignore="RtlCompat" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
