@@ -14,6 +14,7 @@ import android.media.RingtoneManager
 import android.net.Uri
 import android.os.Build
 import android.os.Handler
+import android.os.VibrationEffect
 import android.os.Vibrator
 import android.util.Log
 import androidx.core.app.NotificationCompat
@@ -45,8 +46,13 @@ class MyBroadcastReceiverCitaMedica  : BroadcastReceiver() {
             ringtone.play()
          */
 
+
             val vibrator = context!!.getSystemService(VIBRATOR_SERVICE) as Vibrator
+        if (Build.VERSION.SDK_INT >= 26) {
+            vibrator.vibrate(VibrationEffect.createOneShot(2000000, VibrationEffect.DEFAULT_AMPLITUDE))
+        } else {
             vibrator.vibrate(2000000)
+        }
             var alarmUri: Uri? = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE)
             if (alarmUri == null) {
                 alarmUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE)

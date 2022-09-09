@@ -31,7 +31,6 @@ class AddCitaMedicoFechayAlarma : Fragment() {
 
     interface Callbacks {
         fun addCitaMedicoNombreyComentario()
-        //fun addMedicacionNumeroTomasMensuales()
     }
 
     private var callbacks: Callbacks? = null

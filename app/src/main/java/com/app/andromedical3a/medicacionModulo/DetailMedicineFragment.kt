@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.OnBackPressedCallback
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -28,8 +29,6 @@ class DetailMedicineFragment : Fragment() {
 
     interface Callbacks
 
-    private lateinit var backbutton: ImageButton
-    private lateinit var helpbutton: ImageButton
     private lateinit var fotoMedicacion: ImageView
     private lateinit var tituloMedicacion: TextView
     private lateinit var FechaInicio: TextView
@@ -49,6 +48,18 @@ class DetailMedicineFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        setHasOptionsMenu(true)
+
+        requireActivity().onBackPressedDispatcher.addCallback(
+            this,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    isEnabled = false
+                    requireActivity().onBackPressed()
+                }
+            }
+        )
 
         Log.i(TAG, "Fragmento $TAG creado")
         medicacionPasada = arguments?.getSerializable(
@@ -73,7 +84,6 @@ class DetailMedicineFragment : Fragment() {
         FechaFin = view.findViewById(R.id.fechaFinal) as TextView
         cantidadToma = view.findViewById(R.id.tomasTotales) as TextView
         horasTomas = view.findViewById(R.id.horaTomas) as TextView
-        backbutton = view.findViewById(R.id.back_button_detail_medicine) as ImageButton
 
         return view
     }
@@ -90,10 +100,6 @@ class DetailMedicineFragment : Fragment() {
         val spfdays = SimpleDateFormat("EEEE")
         val spf = SimpleDateFormat("dd/MMM/yyyy")
 
-        backbutton.setOnClickListener {
-            Log.i(TAG, "Saliendo de fragmento ${TAG}")
-            activity?.onBackPressed()
-        }
 
         fotoMedicacion.setImageBitmap(detailMedicineCitaViewModel.medicacion.foto_medicacion)
         tituloMedicacion.text = detailMedicineCitaViewModel.medicacion.name

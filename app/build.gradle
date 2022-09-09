@@ -7,12 +7,12 @@ plugins {
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 30
 
     defaultConfig {
         applicationId "com.app.andromedical3a"
         minSdkVersion 19
-        targetSdkVersion 28
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
 

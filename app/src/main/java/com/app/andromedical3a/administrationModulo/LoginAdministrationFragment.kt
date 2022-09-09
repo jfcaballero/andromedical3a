@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import com.app.andromedical3a.R
 
@@ -27,7 +28,6 @@ class LoginAdministrationFragment : Fragment() {
     private lateinit var insertpassword : EditText
     private lateinit var loginbutton : Button
     private lateinit var forgotpasswordbutton : Button
-    private lateinit var backbutton : ImageButton
     private lateinit var helpbutton : ImageButton
 
     // Me creo el viewmodel para comprobar password.
@@ -48,7 +48,6 @@ class LoginAdministrationFragment : Fragment() {
         insertpassword = view.findViewById(R.id.TextPassword) as EditText
         loginbutton = view.findViewById(R.id.login_button) as Button
         forgotpasswordbutton = view.findViewById(R.id.forget_password_button) as Button
-        backbutton = view.findViewById(R.id.back_button) as ImageButton
         helpbutton = view.findViewById(R.id.help_icon) as ImageButton
 
 
@@ -57,6 +56,18 @@ class LoginAdministrationFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+
+        requireActivity().onBackPressedDispatcher.addCallback(
+            this,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    isEnabled = false
+                    requireActivity().onBackPressed()
+                }
+            }
+        )
+
 
         Log.i(TAG, "Fragmento $TAG creado")
 
@@ -66,11 +77,6 @@ class LoginAdministrationFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         loginadministrationviewmodel = LoginAdministrationViewModel()
-
-        backbutton.setOnClickListener {
-            Log.i(TAG, "Saliendo de fragmento $TAG")
-            activity?.onBackPressed()
-        }
 
         helpbutton.setOnClickListener {
             val dlgAlert = AlertDialog.Builder(this.context)

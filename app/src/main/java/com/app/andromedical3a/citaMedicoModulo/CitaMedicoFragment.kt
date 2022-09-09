@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
+import androidx.activity.OnBackPressedCallback
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -30,7 +31,6 @@ class CitaMedicoFragment : Fragment() {
         fun detailCitaMedicoSeleccionada(citaMedico: CitaMedico)
     }
 
-    private lateinit var backbutton: ImageButton
     private lateinit var helpbutton: ImageButton
     private lateinit var recyclerView: RecyclerView
     private var citaMedicoListAdapter: CitaMedicoListAdapter = CitaMedicoListAdapter(emptyList())
@@ -45,15 +45,17 @@ class CitaMedicoFragment : Fragment() {
     @SuppressLint("LongLogTag")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //medicacion  = Medicacion(UUID.randomUUID(),"paracetamol",Date(),Date(),40f,2f, Calendar.getInstance(),
-            //BitmapFactory.decodeResource(context?.resources,R.drawable.pastillasmain))
+        setHasOptionsMenu(true)
 
-         //medicacion1  = Medicacion(UUID.randomUUID(),"ibuprofenon",Date(),Date(),40f,2f, Calendar.getInstance(),
-            //BitmapFactory.decodeResource(context?.resources,R.drawable.pills))
-
-
-        //administrationMedicineViewModel.addMedicacion(medicacion)
-        //administrationMedicineViewModel.addMedicacion(medicacion1)
+        requireActivity().onBackPressedDispatcher.addCallback(
+            this,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    isEnabled = false
+                    requireActivity().onBackPressed()
+                }
+            }
+        )
         Log.i(TAG, "Fragmento $TAG creado")
 
     }
@@ -71,7 +73,6 @@ class CitaMedicoFragment : Fragment() {
         recyclerView.adapter = citaMedicoListAdapter
         recyclerView.layoutManager = LinearLayoutManager(context)
 
-        backbutton = view.findViewById(R.id.back_button_administration_citaMedico) as ImageButton
         helpbutton = view.findViewById(R.id.help_icon_administration_citaMedico) as ImageButton
 
         return view
@@ -108,10 +109,6 @@ class CitaMedicoFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        backbutton.setOnClickListener {
-            Log.i(TAG, "Saliendo de fragmento $TAG")
-            activity?.onBackPressed()
-        }
 
         helpbutton.setOnClickListener {
             val dlgAlert = AlertDialog.Builder(this.context)

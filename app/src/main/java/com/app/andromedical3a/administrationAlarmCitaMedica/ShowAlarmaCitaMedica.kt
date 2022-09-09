@@ -27,10 +27,6 @@ class ShowAlarmaCitaMedica : AppCompatActivity() {
     private lateinit var horaCita: TextView
     private lateinit var botonParar: Button
 
-    private val showAlarmaCitaMedicaViewModel: ShowAlarmaCitaMedicaViewModel by lazy {
-        ViewModelProvider(this).get(ShowAlarmaCitaMedicaViewModel::class.java)
-    }
-
     @SuppressLint("CutPasteId", "SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

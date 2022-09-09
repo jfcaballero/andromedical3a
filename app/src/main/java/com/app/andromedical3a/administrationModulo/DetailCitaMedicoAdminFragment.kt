@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
+import androidx.activity.OnBackPressedCallback
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -33,8 +34,6 @@ class DetailCitaMedicoFragmentAdmin : Fragment() {
     }
 
 
-    private lateinit var backbutton: ImageButton
-    private lateinit var helpbutton: ImageButton
     private lateinit var nombreMedico: TextView
     private lateinit var comentarioCitaMedica: TextView
     private lateinit var fechaCita: TextView
@@ -60,6 +59,20 @@ class DetailCitaMedicoFragmentAdmin : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
+        setHasOptionsMenu(true)
+
+        requireActivity().onBackPressedDispatcher.addCallback(
+            this,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    isEnabled = false
+                    requireActivity().onBackPressed()
+                }
+            }
+        )
+
+
         Log.i(TAG, "Fragmento $TAG creado")
         citaMedicoPasada = arguments?.getSerializable(
             ARG_CITAMEDICACION
@@ -80,7 +93,6 @@ class DetailCitaMedicoFragmentAdmin : Fragment() {
         comentarioCitaMedica = view.findViewById(R.id.comentario) as TextView
         fechaCita = view.findViewById(R.id.fechaCitaMedico) as TextView
         horaAlarma = view.findViewById(R.id.horaAlarma) as TextView
-        backbutton = view.findViewById(R.id.back_button_detail_citamedico) as ImageButton
         deleteCitaMedico = view.findViewById(R.id.deleteCitaMedico) as Button
 
         return view
@@ -119,10 +131,6 @@ class DetailCitaMedicoFragmentAdmin : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        backbutton.setOnClickListener {
-            Log.i(TAG, "Saliendo de fragmento $TAG")
-            activity?.onBackPressed()
-        }
     }
 
     @SuppressLint("LongLogTag")

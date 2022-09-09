@@ -7,33 +7,6 @@
     android:background="#5EC1D1"
     android:orientation="horizontal">
 
-    <ImageButton
-        android:id="@+id/back_button_administration_citaMedico"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:adjustViewBounds="false"
-        android:clickable="true"
-        android:contentDescription="@string/back_icon"
-        android:focusable="true"
-        android:scaleType="centerCrop"
-        android:background="@mipmap/atras"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageButton
-        android:id="@+id/help_icon_administration_citaMedico"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:contentDescription="@string/help_icon"
-        android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        android:background="@mipmap/pregunta" />
-
     <org.naishadhparmar.zcustomcalendar.CustomCalendar
         android:id="@+id/calendar"
         android:layout_width="wrap_content"
@@ -46,42 +19,76 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/amarilloTexto2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:gravity="center"
+        android:padding="10sp"
+        android:text="Cita médica asiganda al dia"
+        android:textAlignment="textStart"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:drawableLeftCompat="@mipmap/numero"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/amarilloTexto"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="RtlCompat" />
+
+
+    <ImageButton
+        android:id="@+id/help_icon_administration_citaMedico"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="4dp"
+        android:background="@mipmap/pregunta"
+        android:contentDescription="@string/help_icon"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/verdeTexto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
+        android:gravity="center"
         android:text="Todas las medicaciones tomadas"
         android:textAlignment="textStart"
-        android:textSize="20sp"
+        android:textSize="15sp"
         android:textStyle="bold"
-        android:gravity="center"
         app:drawableLeftCompat="@mipmap/verde_calendar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/calendar"
-        app:layout_constraintVertical_bias="0.139"
+        app:layout_constraintVertical_bias="0.0"
         tools:ignore="RtlCompat" />
 
     <TextView
         android:id="@+id/amarilloTexto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Alguna medicación por tomar"
-        android:textSize="20sp"
-        android:textAlignment="textStart"
-        android:gravity="center"
-        android:textStyle="bold"
         android:layout_marginStart="10dp"
+        android:gravity="center"
+        android:text="Alguna medicación por tomar"
+        android:textAlignment="textStart"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:drawableLeftCompat="@mipmap/amarillo_calendar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.521"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/verdeTexto"
-        app:layout_constraintVertical_bias="0.08"
-        app:drawableLeftCompat="@mipmap/amarillo_calendar"
+        app:layout_constraintVertical_bias="0.0"
         tools:ignore="RtlCompat" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

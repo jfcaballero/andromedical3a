@@ -13,6 +13,7 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.OnBackPressedCallback
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -34,9 +35,6 @@ class DetailMedicineFragmentAdmin : Fragment() {
         fun administrationModulo()
     }
 
-
-    private lateinit var backbutton: ImageButton
-    private lateinit var helpbutton: ImageButton
     private lateinit var fotoMedicacion: ImageView
     private lateinit var tituloMedicacion: TextView
     private lateinit var FechaInicio: TextView
@@ -63,6 +61,17 @@ class DetailMedicineFragmentAdmin : Fragment() {
     @SuppressLint("LongLogTag")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+
+        requireActivity().onBackPressedDispatcher.addCallback(
+            this,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    isEnabled = false
+                    requireActivity().onBackPressed()
+                }
+            }
+        )
 
         Log.i(TAG, "Fragmento $TAG creado")
         medicacionPasada = arguments?.getSerializable(
@@ -89,7 +98,6 @@ class DetailMedicineFragmentAdmin : Fragment() {
         FechaFin = view.findViewById(R.id.fechaFinal) as TextView
         cantidadToma = view.findViewById(R.id.tomasTotales) as TextView
         horasTomas = view.findViewById(R.id.horaTomas) as TextView
-        backbutton = view.findViewById(R.id.back_button_detail_medicine_admin) as ImageButton
 
         return view
     }
@@ -183,10 +191,6 @@ class DetailMedicineFragmentAdmin : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        backbutton.setOnClickListener {
-            Log.i(TAG, "Saliendo de fragmento $TAG")
-            activity?.onBackPressed()
-        }
     }
 
     @SuppressLint("LongLogTag")

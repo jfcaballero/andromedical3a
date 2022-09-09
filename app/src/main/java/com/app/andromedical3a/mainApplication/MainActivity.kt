@@ -5,21 +5,25 @@ import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.app.andromedical3a.R
 import com.app.andromedical3a.addCitaMedicoModulo.*
 import com.app.andromedical3a.addMedicationModulo.*
-import com.app.andromedical3a.administrationMedicineModulo.Medicacion
+import com.app.andromedical3a.administrationAlarmCitaMedica.MyBroadcastReceiverCitaMedica
 import com.app.andromedical3a.administrationAlarmMedicine.MyBroadcastReceiver
 import com.app.andromedical3a.administrationCitaMedicoModulo.CitaMedico
+import com.app.andromedical3a.administrationMedicineModulo.Medicacion
 import com.app.andromedical3a.administrationModulo.*
 import com.app.andromedical3a.calendarModulo.CalendarFragment
 import com.app.andromedical3a.citaMedicoModulo.CitaMedicoFragment
 import com.app.andromedical3a.citaMedicoModulo.DetailCitaMedicoFragment
 import com.app.andromedical3a.medicacionModulo.DetailMedicineFragment
 import com.app.andromedical3a.medicacionModulo.MedicineFragment
+
 
 private const val TAG = "MainActivity"
 
@@ -43,12 +47,18 @@ class MainActivity : AppCompatActivity(), MainPageFragment.Callbacks, LoginAdmin
                     .commit()
         }
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        val colorDrawable = ColorDrawable(Color.parseColor("#FFFFFFFF"))
+
+        supportActionBar!!.setBackgroundDrawable(colorDrawable)
+
     }
 
     override fun deleteAlarmsCitaMedico(citaMedico: CitaMedico) {
             val id = citaMedico.id_alarma
             val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager?
-            val myIntent = Intent(this, MyBroadcastReceiver::class.java)
+            val myIntent = Intent(this, MyBroadcastReceiverCitaMedica::class.java)
             val pendingIntent = PendingIntent.getBroadcast(
                 this, id.toInt(), myIntent,
                 PendingIntent.FLAG_UPDATE_CURRENT
@@ -287,6 +297,11 @@ class MainActivity : AppCompatActivity(), MainPageFragment.Callbacks, LoginAdmin
             .replace(R.id.fragment_container, fragmentodetailCitaMedicoSeleccionada)
             .addToBackStack(null)
             .commit()
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
 

@@ -14,6 +14,7 @@ import android.media.RingtoneManager
 import android.net.Uri
 import android.os.Build
 import android.os.Handler
+import android.os.VibrationEffect
 import android.os.Vibrator
 import android.util.Log
 import androidx.core.app.NotificationCompat
@@ -32,21 +33,14 @@ class MyBroadcastReceiver  : BroadcastReceiver() {
 
     @SuppressLint("UnsafeProtectedBroadcastReceiver", "ServiceCast")
     override fun onReceive(context: Context?, intent: Intent?) {
-        /*
-        val vibrator = context!!.getSystemService(VIBRATOR_SERVICE) as Vibrator
-            vibrator.vibrate(4000)
-            var alarmUri: Uri? = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
-            if (alarmUri == null) {
-                alarmUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
-            }
-            val ringtone = RingtoneManager.getRingtone(context, alarmUri)
-
-            // play ringtone
-            ringtone.play()
-         */
 
             val vibrator = context!!.getSystemService(VIBRATOR_SERVICE) as Vibrator
-            vibrator.vibrate(2000000)
+
+            if (Build.VERSION.SDK_INT >= 26) {
+                vibrator.vibrate(VibrationEffect.createOneShot(2000000, VibrationEffect.DEFAULT_AMPLITUDE))
+            } else {
+                vibrator.vibrate(2000000)
+            }
             var alarmUri: Uri? = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
             if (alarmUri == null) {
                 alarmUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
@@ -61,7 +55,7 @@ class MyBroadcastReceiver  : BroadcastReceiver() {
 
             val fullScreenIntent = Intent(context, ShowAlarmaMedicacion::class.java).apply {
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                this.putExtra("fotoMedicacion", intent.getParcelableExtra("fotoMedicacion") as Bitmap)
+                this.putExtra("fotoMedicacion", intent.getParcelableExtra("fotoMedicacion") as Bitmap?)
                 this.putExtra("tomaDiaria", intent.getFloatExtra("tomaDiaria",0.0f))
                 this.putExtra("nombreMedicacion", intent.getStringExtra("nombreMedicacion"))
                 this.putExtra("comentarioToma", intent.getStringExtra("comentarioToma"))
@@ -76,7 +70,7 @@ class MyBroadcastReceiver  : BroadcastReceiver() {
                 fullScreenIntent, PendingIntent.FLAG_UPDATE_CURRENT)
 
             val builder = NotificationCompat.Builder(context, CHANNEL_ID)
-                .setSmallIcon(R.drawable.pills)
+                .setSmallIcon(R.mipmap.pills)
                 .setContentTitle("Hora de la medicación")
                 .setContentText("Hora de tomarte " + intent.getStringExtra("nombreMedicacion"))
                 .setPriority(NotificationCompat.PRIORITY_HIGH)

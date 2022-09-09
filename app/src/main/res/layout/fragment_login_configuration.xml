@@ -10,30 +10,15 @@
 
 
     <ImageButton
-        android:id="@+id/back_button"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:adjustViewBounds="false"
-        android:clickable="true"
-        android:contentDescription="@string/back_icon"
-        android:focusable="true"
-        android:scaleType="centerCrop"
-        android:background="@mipmap/atras"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageButton
         android:id="@+id/help_icon"
         android:layout_width="79dp"
         android:layout_height="82dp"
-        android:contentDescription="@string/help_icon"
         android:background="@mipmap/pregunta"
+        android:contentDescription="@string/help_icon"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView

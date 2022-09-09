@@ -30,6 +30,7 @@ class MainPageFragment : Fragment() {
     private lateinit var medicineButton: ImageButton
 
 
+
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,

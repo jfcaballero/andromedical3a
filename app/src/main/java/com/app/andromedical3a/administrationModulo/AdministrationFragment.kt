@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import com.app.andromedical3a.R
 import com.app.andromedical3a.mainApplication.MainActivity
@@ -23,7 +24,6 @@ class AdministrationFragment : Fragment() {
         fun administrationCitaMedicoModulo()
     }
 
-    private lateinit var backbutton: ImageButton
     private lateinit var helpbutton: ImageButton
     private lateinit var citeDoctorButton: ImageButton
     private lateinit var medicineButton: ImageButton
@@ -34,6 +34,18 @@ class AdministrationFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        setHasOptionsMenu(true)
+
+        requireActivity().onBackPressedDispatcher.addCallback(
+            this,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    isEnabled = false
+                    val intent = Intent(context, MainActivity::class.java)
+                    startActivity(intent)
+                }
+            }
+        )
         Log.i(TAG, "Fragmento $TAG creado")
 
 
@@ -54,7 +66,6 @@ class AdministrationFragment : Fragment() {
 
         citeDoctorButton = view.findViewById(R.id.cita_medico) as ImageButton
         medicineButton = view.findViewById(R.id.pastillas) as ImageButton
-        backbutton = view.findViewById(R.id.back_button_administration) as ImageButton
         helpbutton = view.findViewById(R.id.help_icon_administration) as ImageButton
 
 
@@ -63,15 +74,6 @@ class AdministrationFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-
-        backbutton.setOnClickListener {
-            Log.i(
-                TAG,
-                "Saliendo de fragmento $TAG"
-            )
-            val intent = Intent(context, MainActivity::class.java)
-            startActivity(intent)
-        }
 
         helpbutton.setOnClickListener {
             val dlgAlert = AlertDialog.Builder(this.context)

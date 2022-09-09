@@ -11,13 +11,4 @@ class AdministrationCitaMedicoViewModel : ViewModel() {
             CitaMedicoRepository.get()
     val listaCitaMedicoLiveData = CitaMedicoRepositorio.getCitasMedico()
 
-    fun addCitaMedico(citaMedico: CitaMedico)
-    {
-        CitaMedicoRepositorio.addCitaMedico(citaMedico)
-    }
-
-    fun deleteCitaMedico(citaMedico: CitaMedico)
-    {
-        CitaMedicoRepositorio.deleteCitaMedico(citaMedico)
-    }
 }

@@ -11,13 +11,4 @@ class AdministrationMedicineViewModel : ViewModel() {
         MedicineRepository.get()
     val listaMedicacionLiveData = MedicacionRepositorio.getMedicaciones()
 
-    fun addMedicacion(medicacion: Medicacion)
-    {
-        MedicacionRepositorio.addMedicacion(medicacion)
-    }
-
-    fun deleteMedicacion(medicacion: Medicacion)
-    {
-        MedicacionRepositorio.deleteMedicacion(medicacion)
-    }
 }

@@ -7,21 +7,6 @@
     android:background="#5EC1D1"
     android:layout_height="match_parent">
 
-    <ImageButton
-        android:id="@+id/back_button_administration_medicine"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:adjustViewBounds="false"
-        android:clickable="true"
-        android:contentDescription="@string/back_icon"
-        android:focusable="true"
-        android:scaleType="centerCrop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@mipmap/atras" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:layout_margin="70dp"
         android:id="@+id/recyclerview"

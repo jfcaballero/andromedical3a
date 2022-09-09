@@ -91,6 +91,16 @@ class AddFechaInicioyFechaFinal : Fragment() {
                     val date = day_of_month.toString() + " / " + (month+1) + " / " + year
                     fechaFinal.setText(date)
                     sharedMedication.setFechaFinal(selectedDate.time)
+                    if (sharedMedication.ValueFechaInicio.value!! >sharedMedication.ValueFechaFinal.value)
+                    {
+                        val dlgAlert = AlertDialog.Builder(this.context)
+                        dlgAlert.setTitle("MENSAJE DE AYUDA")
+                        dlgAlert.setMessage("La fecha final no puede ser menor a la fecha de inicio.\n\n ")
+                        dlgAlert.setPositiveButton("OK", null);
+                        dlgAlert.setCancelable(true);
+                        dlgAlert.create().show();
+                        fechaFinal.setText("")
+                    }
                     Log.i(TAG,"Final" + selectedDate.time)
                 },
                 now.get(Calendar.YEAR), now.get(Calendar.MONTH), now.get(Calendar.DAY_OF_MONTH) )

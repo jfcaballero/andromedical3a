@@ -8,19 +8,6 @@
     android:orientation="vertical">
 
 
-    <ImageButton
-        android:id="@+id/back_button_detail_medicine"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:adjustViewBounds="false"
-        android:background="@mipmap/atras"
-        android:clickable="true"
-        android:contentDescription="@string/back_icon"
-        android:focusable="true"
-        android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
